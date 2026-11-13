@@ -191,6 +191,10 @@
     #side button[aria-label="Close"], #boq button[aria-label="Close"], #dwClose { min-width:40px; min-height:40px; }
     .dw-top { padding:8px 10px; gap:6px; position:relative; z-index:1; background:var(--bg); } .dw-title span { display:none; } .dw-top .seg button { min-height:40px; }
   }
+  #shareP { padding:10px 12px; flex:0 0 auto; } #shareP[hidden] { display:none; } .sh-list { margin:8px 0; padding-left:18px; color:var(--muted); line-height:1.5; }
+  #shareName { width:100%; box-sizing:border-box; font:inherit; font-size:16px; padding:9px 10px; border:1px solid var(--line); border-radius:9px; background:#fff; color:var(--ink); margin-bottom:8px; }
+  .sh-foot { display:flex; gap:6px; } .sh-foot .btn { flex:1; min-height:40px; } #shareP small { display:block; color:var(--muted); font-size:11.5px; margin-top:8px; }
+  #oops { position:fixed; left:50%; transform:translateX(-50%); top:calc(12px + env(safe-area-inset-top)); z-index:9; display:flex; gap:6px; align-items:center; padding:6px 6px 6px 12px; font-size:12.5px; max-width:calc(100vw - 24px); }
   /* guided tour */
   #tourFade { position:fixed; inset:0; background:#14110f; opacity:0; pointer-events:none; transition:opacity .6s ease; z-index:6; }
   #tourFade.on { opacity:1; }
@@ -220,7 +224,7 @@
   @media (max-width:760px) { #tour .t-x, #tour .t-snd { padding:0 11px; font-size:10.5px; letter-spacing:.1em; } #tour .t-ctl { top:calc(14px + env(safe-area-inset-top)); bottom:auto; right:14px; } #tour .t-card { bottom:calc(46px + env(safe-area-inset-bottom)); } #tour::before { height:75%; } }
   @media (prefers-reduced-motion:reduce) { #tour.in .t-kick, #tour.in .t-title, #tour.in .t-text { transition:none; } }
 </style>
-  <script type="module" crossorigin src="./assets/index-T-zzzbwa.js"></script>
+  <script type="module" crossorigin src="./assets/index-CVSc09bE.js"></script>
 </head>
 <body>
 <canvas id="view" tabindex="0"></canvas>
@@ -230,8 +234,8 @@
   <div class="panel seg" id="mode"><button data-v="walk" aria-pressed="true">Walk</button><button data-v="doll">Dollhouse</button></div>
   <div class="panel seg" id="level" style="display:none"><button data-v="2" aria-pressed="true">Whole house</button><button data-v="1">First floor</button><button data-v="0">Ground floor</button></div>
   <div class="panel seg" id="day"><button id="play" aria-pressed="false" title="Play a full day in 60 seconds (Space)">▶</button><input type="range" id="time" min="0" max="1439" step="1" value="750" aria-label="Time of day"><span id="clock">12:30</span><button class="btn" id="nowBtn" aria-pressed="false" title="Follow the time of day where you are">Now</button><button class="btn" id="sunBtn" aria-pressed="false" title="Season and which way the villa faces">Sun</button></div>
-  <div class="panel seg"><button class="btn" id="lightBtn" aria-pressed="false" title="Switch the lights of the room you are in. You can also click a light fitting.">Lights</button><button class="btn" id="autoBtn" aria-pressed="true" title="Lights follow the daily schedule">Auto</button></div>
-  <div class="panel seg"><select class="btn" id="goto" aria-label="Go to room"><option value="">Go to…</option></select><button class="btn" id="measure" aria-pressed="false">Measure</button><button class="btn" id="photo" aria-pressed="false" title="Photo-quality 360° view of this room">Photo</button><button class="btn" id="boqBtn" aria-pressed="false" title="Bill of quantities and cost">BoQ</button><button class="btn" id="fitBtn" aria-pressed="false" title="Check whether your own furniture fits">Fit</button><button class="btn" id="finBtn" aria-pressed="false" title="Try other finishes and see the cost move">Finishes</button><button class="btn" id="svcBtn" aria-pressed="false" title="Indicative electrical, water, drainage and air-conditioning routes">Services</button><button class="btn" id="drawBtn" aria-pressed="false" title="2D plans of each floor with layers you can switch on and off">Drawings</button><button class="btn" id="sectBtn" aria-pressed="false" title="Cut the house open: long section, cross section or plan">Section</button></div>
+  <div class="panel seg"><button class="btn" id="lightBtn" aria-pressed="false" title="Switch the lights of the room you are in. You can also click a light fitting.">Lights</button><button class="btn" id="autoBtn" aria-pressed="true" title="Lights follow the daily schedule">Auto</button><button class="btn" id="musicBtn" aria-pressed="true" title="Soft background music">♪ Music on</button></div>
+  <div class="panel seg"><select class="btn" id="goto" aria-label="Go to room"><option value="">Go to…</option></select><button class="btn" id="measure" aria-pressed="false">Measure</button><button class="btn" id="photo" aria-pressed="false" title="Photo-quality 360° view of this room">Photo</button><button class="btn" id="boqBtn" aria-pressed="false" title="Bill of quantities and cost">BoQ</button><button class="btn" id="fitBtn" aria-pressed="false" title="Check whether your own furniture fits">Fit</button><button class="btn" id="finBtn" aria-pressed="false" title="Try other finishes and see the cost move">Finishes</button><button class="btn" id="svcBtn" aria-pressed="false" title="Indicative electrical, water, drainage and air-conditioning routes">Services</button><button class="btn" id="drawBtn" aria-pressed="false" title="2D plans of each floor with layers you can switch on and off">Drawings</button><button class="btn" id="sectBtn" aria-pressed="false" title="Cut the house open: long section, cross section or plan">Section</button><button class="btn" id="shareBtn" aria-pressed="false" title="A link to the house as you have it now: finishes, furniture and where you stand">Share</button></div>
   <div class="panel seg" id="cleanSeg"><button class="btn" id="cleanTop" title="Hide all controls for a clear view (H)">Hide controls</button></div>
 </div>
 <div id="mbar" class="panel"><button id="mMenu" aria-pressed="false">☰ Menu</button><button id="mTour">▶ Tour</button><button id="mClock" aria-label="Time of day">12:30</button><button id="mLight" aria-pressed="false">Lights</button><button id="mClean" aria-label="Hide all controls">Clear view</button></div>
@@ -240,7 +244,7 @@
 <div id="mini" class="panel"><canvas width="148" height="290"></canvas><div class="cap">Ground floor</div></div>
 <div id="help" class="panel">Drag to look · W A S D or arrows to walk · click the floor to go there · doors open as you approach</div>
 <div id="boq" class="panel" hidden></div>
-<div id="side"><div id="svc" class="panel" hidden></div><div id="sect" class="panel" hidden></div><div id="sunP" class="panel" hidden></div><div id="fin" class="panel" hidden></div><div id="fit" class="panel" hidden></div></div>
+<div id="side"><div id="svc" class="panel" hidden></div><div id="sect" class="panel" hidden></div><div id="sunP" class="panel" hidden></div><div id="shareP" class="panel" hidden></div><div id="fin" class="panel" hidden></div><div id="fit" class="panel" hidden></div></div>
 <div id="tip" class="panel" hidden></div>
 <div id="sheet" hidden></div>
 <div id="stick"><i></i></div>
