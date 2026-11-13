@@ -1,0 +1,34 @@
+System,Item,Quantity,Unit
+Electrical,Incoming supply and sub-main,23.0,m
+Electrical,Lighting circuits,456.9,m
+Electrical,Socket circuits,321.4,m
+Electrical,Meter and distribution boards,3,no
+Electrical,Lighting points,93,no
+Electrical,Switches,9,no
+Electrical,Sockets,49,no
+Water supply,Cold water,120.6,m
+Water supply,Hot water,49.5,m
+Water supply,"Tank, pump, meter, heaters",7,no
+Drainage,"Soil pipe and stacks, 110 mm",24.4,m
+Drainage,"Waste pipe, 50 mm",40.4,m
+Drainage,"Underground drain, 160 mm",27.6,m
+Drainage,"Rainwater pipe, 110 mm",27.8,m
+Drainage,Inspection chambers,6,no
+Air conditioning,Supply duct,23.0,m
+Air conditioning,Refrigerant pipe pair,83.2,m
+Air conditioning,"Extract duct, 100 to 150 mm",9.6,m
+Air conditioning,Indoor units (ducted split),9,no
+Air conditioning,Outdoor units on the roof,9,no
+Air conditioning,Supply diffusers,18,no
+Air conditioning,Extract fans,5,no
+
+AC unit,Area served m2,Indicative TR
+Living room,22.5,1.5
+Dining room,18.1,1.5
+Kitchen,15.7,1.0
+Maid's room,6.2,1.0
+Foyer,26.4,2.0
+Master bedroom,21.7,1.5
+Bedroom 2,12.3,1.0
+Bedroom 3,11.4,1.0
+Upper hall,7.7,1.0

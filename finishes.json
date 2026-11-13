@@ -1,0 +1,560 @@
+{
+ "note": "Option rates are indicative placeholders in AED, like data/rates.json: replace them with a contractor's. [low, mid, high]. 'mult' scales the base rates of a BoQ rate key.",
+ "groups": [
+  {
+   "id": "gf_floor",
+   "name": "Ground-floor flooring",
+   "room": "living",
+   "options": [
+    {
+     "id": "base",
+     "name": "Large porcelain slabs, white"
+    },
+    {
+     "id": "limestone",
+     "name": "Beige limestone, natural stone",
+     "mat": {
+      "stone": {
+       "map": "marble_01"
+      }
+     },
+     "rates": {
+      "tile_floor_large": [
+       380,
+       520,
+       750
+      ]
+     },
+     "desc": {
+      "tile_floor_large": "Natural limestone floor slabs on screed, sealed, ground-floor dry rooms"
+     }
+    },
+    {
+     "id": "grey",
+     "name": "Dark grey stone-effect porcelain",
+     "mat": {
+      "stone": {
+       "map": "large_floor_tiles_02",
+       "color": "#e8e8e8"
+      }
+     },
+     "rates": {
+      "tile_floor_large": [
+       150,
+       220,
+       320
+      ]
+     },
+     "desc": {
+      "tile_floor_large": "Stone-effect porcelain floor tiles 800 x 800 on screed, ground-floor dry rooms"
+     }
+    }
+   ]
+  },
+  {
+   "id": "ff_floor",
+   "name": "First-floor flooring",
+   "room": "master",
+   "options": [
+    {
+     "id": "base",
+     "name": "Engineered oak, natural"
+    },
+    {
+     "id": "dark",
+     "name": "Engineered oak, smoked dark planks",
+     "mat": {
+      "oakfloor": {
+       "map": "plank_dk"
+      }
+     },
+     "rates": {
+      "floor_oak": [
+       280,
+       390,
+       550
+      ]
+     },
+     "desc": {
+      "floor_oak": "Engineered smoked-oak plank flooring on screed and underlay, first floor"
+     }
+    },
+    {
+     "id": "laminate",
+     "name": "Wood-look laminate",
+     "mat": {
+      "oakfloor": {
+       "map": "laminate_floor"
+      }
+     },
+     "rates": {
+      "floor_oak": [
+       90,
+       140,
+       200
+      ]
+     },
+     "desc": {
+      "floor_oak": "Laminate flooring AC4 on underlay, first floor"
+     }
+    }
+   ]
+  },
+  {
+   "id": "wet",
+   "name": "Bathroom tiling",
+   "room": "masterbath",
+   "options": [
+    {
+     "id": "base",
+     "name": "Porcelain, white"
+    },
+    {
+     "id": "limestone",
+     "name": "Beige limestone, natural stone",
+     "mat": {
+      "bathtile": {
+       "map": "marble_01",
+       "repeat": 0.5
+      }
+     },
+     "rates": {
+      "tile_wall": [
+       320,
+       450,
+       650
+      ],
+      "tile_floor_wet": [
+       330,
+       460,
+       660
+      ]
+     },
+     "desc": {
+      "tile_wall": "Natural limestone wall cladding full height to wet rooms",
+      "tile_floor_wet": "Natural limestone floor tiling to wet rooms, laid to falls"
+     }
+    },
+    {
+     "id": "ceramic",
+     "name": "Standard ceramic, light grey",
+     "mat": {
+      "bathtile": {
+       "color": "#d9dcdc"
+      }
+     },
+     "rates": {
+      "tile_wall": [
+       85,
+       120,
+       170
+      ],
+      "tile_floor_wet": [
+       80,
+       110,
+       160
+      ]
+     },
+     "desc": {
+      "tile_wall": "Glazed ceramic wall tiling full height to wet rooms",
+      "tile_floor_wet": "Ceramic floor tiling to wet rooms, laid to falls"
+     }
+    }
+   ]
+  },
+  {
+   "id": "walls",
+   "name": "Interior wall paint",
+   "room": "living",
+   "options": [
+    {
+     "id": "base",
+     "name": "Warm white emulsion"
+    },
+    {
+     "id": "greige",
+     "name": "Greige, premium washable",
+     "mat": {
+      "plaster": {
+       "color": "#d9d1c4"
+      }
+     },
+     "rates": {
+      "paint_int": [
+       24,
+       32,
+       44
+      ]
+     },
+     "desc": {
+      "paint_int": "Premium washable emulsion paint system to plastered walls"
+     }
+    },
+    {
+     "id": "grey",
+     "name": "Light grey emulsion",
+     "mat": {
+      "plaster": {
+       "color": "#d5d7d6"
+      }
+     }
+    }
+   ]
+  },
+  {
+   "id": "joinery",
+   "name": "Doors and fitted joinery",
+   "room": "kitchen",
+   "options": [
+    {
+     "id": "base",
+     "name": "Natural oak veneer"
+    },
+    {
+     "id": "walnut",
+     "name": "Walnut veneer",
+     "mat": {
+      "oak": {
+       "map": "walnut_veneer",
+       "repeat": 0.56,
+       "color": "#d8d4d0"
+      }
+     },
+     "mult": {
+      "door_internal": 1.12,
+      "kitchen_base": 1.1,
+      "kitchen_wall": 1.12,
+      "kitchen_tall": 1.12,
+      "wardrobe": 1.15,
+      "joinery_low": 1.12
+     }
+    },
+    {
+     "id": "white",
+     "name": "White lacquer",
+     "mat": {
+      "oak": {
+       "map": "white",
+       "color": "#ecebe8",
+       "rough": 0.45
+      }
+     },
+     "mult": {
+      "door_internal": 0.92,
+      "kitchen_base": 0.95,
+      "kitchen_wall": 0.92,
+      "kitchen_tall": 0.92,
+      "wardrobe": 0.9,
+      "joinery_low": 0.92
+     }
+    }
+   ]
+  },
+  {
+   "id": "worktop",
+   "name": "Worktops and vanity tops",
+   "room": "kitchen",
+   "options": [
+    {
+     "id": "base",
+     "name": "White quartz"
+    },
+    {
+     "id": "granite",
+     "name": "Black granite",
+     "mat": {
+      "quartz": {
+       "color": "#232325",
+       "rough": 0.18
+      }
+     },
+     "mult": {
+      "kitchen_base": 0.95,
+      "kitchen_island": 0.92,
+      "vanity": 0.95
+     }
+    },
+    {
+     "id": "sintered",
+     "name": "Beige sintered stone",
+     "mat": {
+      "quartz": {
+       "color": "#cdbfa9"
+      }
+     },
+     "mult": {
+      "kitchen_base": 1.1,
+      "kitchen_island": 1.18,
+      "vanity": 1.1
+     }
+    }
+   ]
+  },
+  {
+   "id": "frames",
+   "name": "Window and door frames",
+   "room": "living",
+   "options": [
+    {
+     "id": "base",
+     "name": "Black powder coat"
+    },
+    {
+     "id": "champagne",
+     "name": "Champagne anodised",
+     "mat": {
+      "frame": {
+       "color": "#8f7b5e",
+       "rough": 0.35
+      }
+     },
+     "mult": {
+      "alu_window": 1.06,
+      "alu_slider": 1.06,
+      "alu_door": 1.06
+     }
+    },
+    {
+     "id": "white",
+     "name": "White powder coat",
+     "mat": {
+      "frame": {
+       "color": "#dcdcda"
+      }
+     }
+    }
+   ]
+  },
+  {
+   "id": "facade",
+   "name": "Facade paint",
+   "room": "pool",
+   "options": [
+    {
+     "id": "base",
+     "name": "Warm white"
+    },
+    {
+     "id": "sand",
+     "name": "Sand",
+     "mat": {
+      "stucco": {
+       "color": "#e6d3b3"
+      }
+     }
+    },
+    {
+     "id": "grey",
+     "name": "Light grey",
+     "mat": {
+      "stucco": {
+       "color": "#cfd0cd"
+      }
+     }
+    }
+   ]
+  },
+  {
+   "id": "stone",
+   "name": "Garden-block wall cladding",
+   "room": "pool",
+   "options": [
+    {
+     "id": "base",
+     "name": "Rubble stone"
+    },
+    {
+     "id": "limestone",
+     "name": "Beige limestone cladding",
+     "mat": {
+      "rubble": {
+       "map": "marble_01",
+       "repeat": 1.2,
+       "color": "#ffffff",
+       "normal": 0.15
+      }
+     },
+     "rates": {
+      "stone_clad": [
+       480,
+       650,
+       900
+      ]
+     },
+     "desc": {
+      "stone_clad": "Limestone cladding slabs, mechanically fixed, to ground-floor garden block"
+     }
+    },
+    {
+     "id": "render",
+     "name": "No stone: render and paint",
+     "mat": {
+      "rubble": {
+       "map": "white_stucco",
+       "repeat": 0.9,
+       "color": "#fff4e3",
+       "normal": 0
+      }
+     },
+     "rates": {
+      "stone_clad": [
+       66,
+       82,
+       106
+      ]
+     },
+     "desc": {
+      "stone_clad": "External render and textured paint in place of stone cladding"
+     }
+    }
+   ]
+  },
+  {
+   "id": "paving",
+   "name": "Terrace and balcony paving",
+   "room": "pool",
+   "options": [
+    {
+     "id": "base",
+     "name": "Porcelain pavers 20 mm, light"
+    },
+    {
+     "id": "limestone",
+     "name": "Beige limestone, natural stone",
+     "mat": {
+      "paving": {
+       "map": "marble_01",
+       "color": "#ffffff"
+      }
+     },
+     "rates": {
+      "paving_porcelain": [
+       300,
+       420,
+       600
+      ]
+     },
+     "desc": {
+      "paving_porcelain": "Natural limestone paving 30 mm on screed bed"
+     }
+    },
+    {
+     "id": "grey",
+     "name": "Dark grey porcelain pavers",
+     "mat": {
+      "paving": {
+       "map": "large_floor_tiles_02",
+       "color": "#ffffff"
+      }
+     }
+    }
+   ]
+  },
+  {
+   "id": "appliances",
+   "name": "Kitchen appliances",
+   "costOnly": true,
+   "options": [
+    {
+     "id": "basic",
+     "name": "Entry-level brand",
+     "rates": {
+      "appliances": [
+       18000,
+       25000,
+       32000
+      ]
+     }
+    },
+    {
+     "id": "base",
+     "name": "Mid-range brand"
+    },
+    {
+     "id": "premium",
+     "name": "Premium brand",
+     "rates": {
+      "appliances": [
+       55000,
+       75000,
+       110000
+      ]
+     }
+    }
+   ]
+  },
+  {
+   "id": "sanitary",
+   "name": "Sanitary ware and taps",
+   "costOnly": true,
+   "options": [
+    {
+     "id": "basic",
+     "name": "Standard range",
+     "mult": {
+      "wc": 0.7,
+      "basin": 0.65,
+      "shower": 0.65,
+      "bath_free": 0.65,
+      "bath_built": 0.75,
+      "sink_kitchen": 0.7
+     }
+    },
+    {
+     "id": "base",
+     "name": "Mid-range"
+    },
+    {
+     "id": "premium",
+     "name": "Designer range",
+     "mult": {
+      "wc": 1.6,
+      "basin": 1.7,
+      "shower": 1.7,
+      "bath_free": 1.8,
+      "bath_built": 1.5,
+      "sink_kitchen": 1.6
+     }
+    }
+   ]
+  }
+ ],
+ "presets": [
+  {
+   "id": "value",
+   "name": "Value",
+   "pick": {
+    "gf_floor": "grey",
+    "ff_floor": "laminate",
+    "wet": "ceramic",
+    "joinery": "white",
+    "worktop": "granite",
+    "stone": "render",
+    "appliances": "basic",
+    "sanitary": "basic"
+   }
+  },
+  {
+   "id": "base",
+   "name": "As modelled",
+   "pick": {}
+  },
+  {
+   "id": "premium",
+   "name": "Premium",
+   "pick": {
+    "gf_floor": "limestone",
+    "ff_floor": "dark",
+    "wet": "limestone",
+    "walls": "greige",
+    "joinery": "walnut",
+    "worktop": "sintered",
+    "frames": "champagne",
+    "stone": "limestone",
+    "paving": "limestone",
+    "appliances": "premium",
+    "sanitary": "premium"
+   }
+  }
+ ]
+}

@@ -1,0 +1,565 @@
+{
+ "rooms": [
+  {
+   "id": "living",
+   "name": "Living room",
+   "floor": 0,
+   "rect": [
+    0.25,
+    4.85,
+    0.25,
+    5.15
+   ],
+   "w": 4.6,
+   "d": 4.9,
+   "ch": 2.7,
+   "label": [
+    4.6,
+    5.0
+   ],
+   "note": "Open to the dining room; depth taken to the kitchen wall line.",
+   "outdoor": false,
+   "stand": [
+    1.2,
+    4.6,
+    0.0
+   ],
+   "yaw": -0.5
+  },
+  {
+   "id": "dining",
+   "name": "Dining room",
+   "floor": 0,
+   "rect": [
+    0.25,
+    4.51,
+    5.91,
+    10.17
+   ],
+   "w": 4.26,
+   "d": 4.26,
+   "ch": 2.7,
+   "label": [
+    4.26,
+    4.26
+   ],
+   "note": "Open plan with no walls on two sides; set out to the label.",
+   "outdoor": false,
+   "stand": [
+    3.8,
+    9.3,
+    0.0
+   ],
+   "yaw": 0.5
+  },
+  {
+   "id": "kitchen",
+   "name": "Kitchen",
+   "floor": 0,
+   "rect": [
+    4.85,
+    7.85,
+    5.15,
+    10.38
+   ],
+   "w": 3.0,
+   "d": 5.23,
+   "ch": 2.7,
+   "label": [
+    3.0,
+    5.2
+   ],
+   "note": "",
+   "outdoor": false,
+   "stand": [
+    6.6,
+    9.2,
+    0.0
+   ],
+   "yaw": 0.0
+  },
+  {
+   "id": "powder",
+   "name": "Powder room",
+   "floor": 0,
+   "rect": [
+    0.45,
+    3.09,
+    10.31,
+    11.94
+   ],
+   "w": 2.64,
+   "d": 1.63,
+   "ch": 2.5,
+   "label": [
+    2.6,
+    1.65
+   ],
+   "note": "",
+   "outdoor": false,
+   "stand": [
+    2.4,
+    11.4,
+    0.0
+   ],
+   "yaw": 1.57
+  },
+  {
+   "id": "laundry",
+   "name": "Laundry",
+   "floor": 0,
+   "rect": [
+    0.45,
+    3.09,
+    12.02,
+    13.31
+   ],
+   "w": 2.64,
+   "d": 1.29,
+   "ch": 2.5,
+   "label": [
+    null,
+    1.3
+   ],
+   "note": "Width label is not legible on the brochure image.",
+   "outdoor": false,
+   "stand": [
+    2.3,
+    12.7,
+    0.0
+   ],
+   "yaw": 1.57
+  },
+  {
+   "id": "maid",
+   "name": "Maid's room",
+   "floor": 0,
+   "rect": [
+    5.63,
+    7.85,
+    10.52,
+    13.31
+   ],
+   "w": 2.22,
+   "d": 2.79,
+   "ch": 2.5,
+   "label": [
+    2.25,
+    2.75
+   ],
+   "note": "",
+   "outdoor": false,
+   "stand": [
+    6.2,
+    12.7,
+    0.0
+   ],
+   "yaw": -0.6
+  },
+  {
+   "id": "maidbath",
+   "name": "Maid's bathroom",
+   "floor": 0,
+   "rect": [
+    6.0,
+    7.85,
+    13.5,
+    15.8
+   ],
+   "w": 1.85,
+   "d": 2.3,
+   "ch": 2.5,
+   "label": null,
+   "note": "Not dimensioned on the plan.",
+   "outdoor": false,
+   "stand": [
+    6.9,
+    14.0,
+    0.0
+   ],
+   "yaw": 3.14
+  },
+  {
+   "id": "foyer",
+   "name": "Foyer",
+   "floor": 0,
+   "rect": [
+    3.22,
+    5.79,
+    13.5,
+    17.0
+   ],
+   "w": 2.57,
+   "d": 3.5,
+   "ch": 6.25,
+   "label": [
+    2.6,
+    3.45
+   ],
+   "note": "Double height over the entrance.",
+   "outdoor": false,
+   "stand": [
+    4.5,
+    16.3,
+    0.0
+   ],
+   "yaw": 0.0
+  },
+  {
+   "id": "corridor",
+   "name": "Hall",
+   "floor": 0,
+   "rect": [
+    3.22,
+    4.85,
+    10.17,
+    13.5
+   ],
+   "w": 1.63,
+   "d": 3.33,
+   "ch": 2.7,
+   "label": null,
+   "note": "",
+   "outdoor": false,
+   "stand": [
+    4.0,
+    12.0,
+    0.0
+   ],
+   "yaw": 0.0
+  },
+  {
+   "id": "stair",
+   "name": "Stair",
+   "floor": 0,
+   "rect": [
+    0.25,
+    3.09,
+    13.5,
+    17.7
+   ],
+   "w": 2.84,
+   "d": 4.2,
+   "ch": 6.25,
+   "label": null,
+   "note": "20 risers of 167.5 mm (assumed).",
+   "outdoor": false,
+   "stand": [
+    3.6,
+    14.1,
+    0.0
+   ],
+   "yaw": 1.57
+  },
+  {
+   "id": "garage",
+   "name": "Garage (carport)",
+   "floor": 0,
+   "rect": [
+    4.9,
+    11.0,
+    17.2,
+    23.25
+   ],
+   "w": 6.1,
+   "d": 6.05,
+   "ch": null,
+   "label": [
+    6.0,
+    6.3
+   ],
+   "note": "Plan dimension order unclear; roofed carport on four columns.",
+   "outdoor": true,
+   "stand": [
+    8.0,
+    20.5,
+    0.0
+   ],
+   "yaw": 0.0
+  },
+  {
+   "id": "pool",
+   "name": "Pool terrace",
+   "floor": 0,
+   "rect": [
+    -1.96,
+    10.08,
+    -4.1,
+    0.0
+   ],
+   "w": 12.04,
+   "d": 4.1,
+   "ch": null,
+   "label": null,
+   "note": "Pool about 8.55 x 2.11 m, scaled from the image.",
+   "outdoor": true,
+   "stand": [
+    4.0,
+    -0.65,
+    0.0
+   ],
+   "yaw": 0.0
+  },
+  {
+   "id": "terrace_w",
+   "name": "West terrace",
+   "floor": 0,
+   "rect": [
+    -2.8,
+    0.0,
+    6.16,
+    9.75
+   ],
+   "w": 2.8,
+   "d": 3.59,
+   "ch": null,
+   "label": null,
+   "note": "",
+   "outdoor": true,
+   "stand": [
+    -2.2,
+    6.6,
+    0.0
+   ],
+   "yaw": -2.2
+  },
+  {
+   "id": "master",
+   "name": "Master bedroom",
+   "floor": 1,
+   "rect": [
+    0.3,
+    4.33,
+    2.78,
+    6.37
+   ],
+   "w": 4.03,
+   "d": 3.59,
+   "ch": 2.6,
+   "label": [
+    4.0,
+    3.5
+   ],
+   "note": "",
+   "outdoor": false,
+   "stand": [
+    3.6,
+    5.9,
+    3.35
+   ],
+   "yaw": 0.9
+  },
+  {
+   "id": "closet",
+   "name": "Walk-in closet",
+   "floor": 1,
+   "rect": [
+    0.3,
+    3.09,
+    6.51,
+    9.11
+   ],
+   "w": 2.79,
+   "d": 2.6,
+   "ch": 2.6,
+   "label": [
+    2.6,
+    2.6
+   ],
+   "note": "Drawing scales to about 2.71 m wide, wider than its own label.",
+   "outdoor": false,
+   "stand": [
+    2.3,
+    7.5,
+    3.35
+   ],
+   "yaw": 2.4
+  },
+  {
+   "id": "masterbath",
+   "name": "Master bathroom",
+   "floor": 1,
+   "rect": [
+    0.45,
+    3.09,
+    9.25,
+    13.31
+   ],
+   "w": 2.64,
+   "d": 4.06,
+   "ch": 2.4,
+   "label": [
+    2.7,
+    4.15
+   ],
+   "note": "",
+   "outdoor": false,
+   "stand": [
+    2.0,
+    9.9,
+    3.35
+   ],
+   "yaw": 3.14
+  },
+  {
+   "id": "bed2",
+   "name": "Bedroom 2",
+   "floor": 1,
+   "rect": [
+    4.48,
+    7.85,
+    2.72,
+    6.37
+   ],
+   "w": 3.37,
+   "d": 3.65,
+   "ch": 2.6,
+   "label": [
+    3.35,
+    3.6
+   ],
+   "note": "Depth to the wardrobe fronts.",
+   "outdoor": false,
+   "stand": [
+    5.1,
+    5.9,
+    3.35
+   ],
+   "yaw": -0.7
+  },
+  {
+   "id": "bath",
+   "name": "Bathroom",
+   "floor": 1,
+   "rect": [
+    5.86,
+    7.85,
+    7.07,
+    10.2
+   ],
+   "w": 1.99,
+   "d": 3.13,
+   "ch": 2.4,
+   "label": [
+    2.0,
+    3.2
+   ],
+   "note": "Label read as 2.00 x 3.20.",
+   "outdoor": false,
+   "stand": [
+    6.4,
+    9.3,
+    3.35
+   ],
+   "yaw": 0.3
+  },
+  {
+   "id": "bed3",
+   "name": "Bedroom 3",
+   "floor": 1,
+   "rect": [
+    4.6,
+    7.85,
+    11.08,
+    14.6
+   ],
+   "w": 3.25,
+   "d": 3.52,
+   "ch": 2.6,
+   "label": [
+    3.2,
+    3.8
+   ],
+   "note": "Drawing scales to 3.47 m deep; 4.22 m including the wardrobe recess.",
+   "outdoor": false,
+   "stand": [
+    5.2,
+    11.6,
+    3.35
+   ],
+   "yaw": -2.3
+  },
+  {
+   "id": "hall1",
+   "name": "Upper hall",
+   "floor": 1,
+   "rect": [
+    3.22,
+    4.45,
+    8.48,
+    14.7
+   ],
+   "w": 1.23,
+   "d": 6.22,
+   "ch": 2.6,
+   "label": null,
+   "note": "",
+   "outdoor": false,
+   "stand": [
+    3.85,
+    12.0,
+    3.35
+   ],
+   "yaw": 0.0
+  },
+  {
+   "id": "balcony_n",
+   "name": "Master balcony",
+   "floor": 1,
+   "rect": [
+    0.07,
+    4.15,
+    0.07,
+    2.6
+   ],
+   "w": 4.08,
+   "d": 2.53,
+   "ch": null,
+   "label": [
+    4.0,
+    2.5
+   ],
+   "note": "",
+   "outdoor": true,
+   "stand": [
+    2.6,
+    1.3,
+    3.35
+   ],
+   "yaw": 0.0
+  },
+  {
+   "id": "balcony_s",
+   "name": "Front balcony",
+   "floor": 1,
+   "rect": [
+    6.0,
+    8.04,
+    14.81,
+    17.37
+   ],
+   "w": 2.04,
+   "d": 2.56,
+   "ch": null,
+   "label": [
+    2.0,
+    2.5
+   ],
+   "note": "",
+   "outdoor": true,
+   "stand": [
+    7.0,
+    15.4,
+    3.35
+   ],
+   "yaw": 3.14
+  }
+ ],
+ "F1": 3.35,
+ "window": [
+  -3.4,
+  11.4,
+  -5.4,
+  23.6
+ ]
+}
