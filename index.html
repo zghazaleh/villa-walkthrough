@@ -8,6 +8,12 @@
 <link rel="icon" href="./favicon.svg" type="image/svg+xml">
 <link rel="icon" href="./favicon-32.png" sizes="32x32" type="image/png">
 <link rel="apple-touch-icon" href="./apple-touch-icon.png">
+<!-- opened from the home screen ("Add to Home Screen") the page runs without the browser's bars -->
+<link rel="manifest" href="./manifest.webmanifest">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Villa B-3BR">
 <style>
   /* side safe areas: the iPhone Duo outer display and any phone held sideways keep system controls or a camera at one side */
   :root { --sleft:env(safe-area-inset-left, 0px); --sright:env(safe-area-inset-right, 0px); }
@@ -54,7 +60,7 @@
   #load span { color:var(--muted); font-size:12.5px; }
   #boq { position:fixed; right:calc(16px + var(--sright)); top:calc(64px + env(safe-area-inset-top)); bottom:calc(16px + env(safe-area-inset-bottom)); width:min(430px, calc(100vw - 32px));
     display:flex; flex-direction:column; overflow:hidden; z-index:5; user-select:text; -webkit-user-select:text; }
-  #boq[hidden] { display:none; }
+  #boq[hidden] { display:none; } .btn[hidden] { display:none; }
   #sheet { position:fixed; inset:0; padding:0 var(--sright) 0 var(--sleft); z-index:8; display:flex; flex-direction:column; background:#12335a; color:#eaf2fb; --ln:#eaf2fb; --mut:#9db9d6; --wall:#eaf2fb; --bg:#12335a; --grid:rgba(255,255,255,.07); user-select:none; }
   #sheet[hidden] { display:none; }
   #sheet.paper { background:#fff; color:#1d1a17; --ln:#1d1a17; --mut:#6b635c; --wall:#2b2622; --bg:#ffffff; --grid:rgba(0,0,0,.06); }
@@ -263,7 +269,7 @@
     #boq { width:min(430px, calc(env(viewport-segment-width 1 0, 100vw) - 32px)); }
   }
 </style>
-  <script type="module" crossorigin src="./assets/index-Bu1dczWc.js"></script>
+  <script type="module" crossorigin src="./assets/index-DkT0L1n1.js"></script>
 </head>
 <body>
 <canvas id="view" tabindex="0"></canvas>
@@ -273,7 +279,7 @@
   <div class="panel seg" id="mode"><button data-v="walk" aria-pressed="true">Walk</button><button data-v="doll">Dollhouse</button></div>
   <div class="panel seg" id="level" style="display:none"><button data-v="2" aria-pressed="true">Whole house</button><button data-v="1">First floor</button><button data-v="0">Ground floor</button></div>
   <div class="panel seg" id="day"><button id="play" aria-pressed="false" title="Play a full day in 60 seconds (Space)">▶</button><input type="range" id="time" min="0" max="1439" step="1" value="750" aria-label="Time of day"><span id="clock">12:30</span><button class="btn" id="nowBtn" aria-pressed="false" title="Follow the time of day where you are">Now</button><button class="btn" id="sunBtn" aria-pressed="false" title="Season and which way the villa faces">Sun</button></div>
-  <div class="panel seg"><button class="btn" id="lightBtn" aria-pressed="false" title="Switch the lights of the room you are in. You can also click a light fitting.">Lights</button><button class="btn" id="autoBtn" aria-pressed="true" title="Lights follow the daily schedule">Auto</button><button class="btn" id="musicBtn" aria-pressed="true" title="Soft background music">♪ Music on</button></div>
+  <div class="panel seg"><button class="btn" id="lightBtn" aria-pressed="false" title="Switch the lights of the room you are in. You can also click a light fitting.">Lights</button><button class="btn" id="autoBtn" aria-pressed="true" title="Lights follow the daily schedule">Auto</button><button class="btn" id="musicBtn" aria-pressed="true" title="Soft background music">♪ Music on</button><button class="btn" id="fsBtn" aria-pressed="false" title="Fill the whole screen, without the browser's bars" hidden>Full screen</button></div>
   <div class="panel seg"><select class="btn" id="goto" aria-label="Go to room"><option value="">Go to…</option></select><button class="btn" id="measure" aria-pressed="false">Measure</button><button class="btn" id="photo" aria-pressed="false" title="Photo-quality 360° view of this room">Photo</button><button class="btn" id="boqBtn" aria-pressed="false" title="Bill of quantities and cost">BoQ</button><button class="btn" id="fitBtn" aria-pressed="false" title="Check whether your own furniture fits">Fit</button><button class="btn" id="finBtn" aria-pressed="false" title="Try other finishes and see the cost move">Finishes</button><button class="btn" id="svcBtn" aria-pressed="false" title="Indicative electrical, water, drainage and air-conditioning routes">Services</button><button class="btn" id="drawBtn" aria-pressed="false" title="2D plans of each floor with layers you can switch on and off">Drawings</button><button class="btn" id="sectBtn" aria-pressed="false" title="Cut the house open: long section, cross section or plan">Section</button><button class="btn" id="shareBtn" aria-pressed="false" title="A link to the house as you have it now: finishes, furniture and where you stand">Share</button></div>
   <div class="panel seg" id="cleanSeg"><button class="btn" id="cleanTop" title="Hide all controls for a clear view (H)">Hide controls</button></div>
 </div>
