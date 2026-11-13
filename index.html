@@ -64,7 +64,7 @@
   .dw-layers label { display:flex; gap:7px; align-items:center; padding:3px 0; cursor:pointer; } .dw-layers input { margin:0; accent-color:#6ec6e8; }
   .dw-legend div { display:grid; grid-template-columns:12px 1fr auto; gap:6px; align-items:center; padding:2px 0; color:var(--mut); } .dw-legend div i { width:10px; height:10px; border-radius:3px; }
   .dw-legend em { font-style:normal; color:inherit; font-variant-numeric:tabular-nums; } .dw-legend p { color:var(--mut); font-size:11.5px; margin:8px 0 0; }
-  .dw-stage { flex:1; position:relative; min-width:0; } .dw-stage svg { width:100%; height:100%; display:block; cursor:grab; touch-action:none; }
+  .dw-stage { flex:1; position:relative; min-width:0; min-height:0; overflow:hidden; } .dw-stage svg { width:100%; height:100%; display:block; cursor:grab; touch-action:none; }
   .dw-tip, .dw-pop { position:absolute; background:#fff; color:#1d1a17; border-radius:9px; padding:6px 10px; font-size:12px; box-shadow:0 4px 16px rgba(0,0,0,.3); max-width:230px; pointer-events:none; }
   .dw-pop { pointer-events:auto; padding:10px 12px; } .dw-pop b { display:block; font:600 14px Georgia,serif; } .dw-pop span { display:block; color:#6b635c; margin:2px 0 8px; } .dw-tip[hidden], .dw-pop[hidden] { display:none; }
   #sheet svg .bg { fill:var(--bg); } #sheet svg .grid { stroke:var(--grid); stroke-width:.02; fill:none; }
@@ -187,6 +187,9 @@
     body.menu-open #stick { display:none !important; }
     #room { top:calc(10px + env(safe-area-inset-top)); } #mini { top:calc(10px + env(safe-area-inset-top)); }
     #boq, #side { bottom:calc(66px + env(safe-area-inset-bottom)); }
+    body.boq-open #stick, body:has(#side > div:not([hidden])) #stick { display:none !important; }      /* a panel sits where the joystick is: tap the floor to move meanwhile */
+    #side button[aria-label="Close"], #boq button[aria-label="Close"], #dwClose { min-width:40px; min-height:40px; }
+    .dw-top { padding:8px 10px; gap:6px; position:relative; z-index:1; background:var(--bg); } .dw-title span { display:none; } .dw-top .seg button { min-height:40px; }
   }
   /* guided tour */
   #tourFade { position:fixed; inset:0; background:#14110f; opacity:0; pointer-events:none; transition:opacity .6s ease; z-index:6; }
@@ -217,7 +220,7 @@
   @media (max-width:760px) { #tour .t-x, #tour .t-snd { padding:0 11px; font-size:10.5px; letter-spacing:.1em; } #tour .t-ctl { top:calc(14px + env(safe-area-inset-top)); bottom:auto; right:14px; } #tour .t-card { bottom:calc(46px + env(safe-area-inset-bottom)); } #tour::before { height:75%; } }
   @media (prefers-reduced-motion:reduce) { #tour.in .t-kick, #tour.in .t-title, #tour.in .t-text { transition:none; } }
 </style>
-  <script type="module" crossorigin src="./assets/index-DmGFf91x.js"></script>
+  <script type="module" crossorigin src="./assets/index-T-zzzbwa.js"></script>
 </head>
 <body>
 <canvas id="view" tabindex="0"></canvas>
