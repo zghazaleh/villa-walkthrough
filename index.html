@@ -17,7 +17,7 @@
 <style>
   /* side safe areas: the iPhone Duo outer display and any phone held sideways keep system controls or a camera at one side */
   :root { --sleft:env(safe-area-inset-left, 0px); --sright:env(safe-area-inset-right, 0px); }
-  :root { --ink:#2b2420; --paper:rgba(250,247,242,.92); --line:rgba(60,45,35,.16); --accent:#6b4a35; --muted:#7a6c62; }
+  :root { --ink:#2b2420; --paper:rgba(250,247,242,.92); --line:rgba(60,45,35,.16); --accent:#6b4a35; --muted:#7a6c62; --ease:cubic-bezier(.22,1,.36,1); }
   * { box-sizing:border-box; -webkit-tap-highlight-color:transparent; }
   html,body { margin:0; height:100%; overflow:hidden; background:#d9d4cc; color:var(--ink);
     font:14px/1.35 ui-sans-serif,-apple-system,"Segoe UI",Roboto,Helvetica,Arial,sans-serif; touch-action:none; user-select:none; -webkit-user-select:none; }
@@ -32,7 +32,19 @@
   .seg { display:flex; padding:3px; gap:2px; }
   .seg button, .btn { appearance:none; border:0; background:transparent; color:var(--ink); font:inherit; padding:7px 11px; border-radius:9px; cursor:pointer; white-space:nowrap; }
   .seg button[aria-pressed="true"], .btn[aria-pressed="true"] { background:var(--accent); color:#fff; }
-  .seg button:hover:not([aria-pressed="true"]), .btn:hover:not([aria-pressed="true"]) { background:rgba(107,74,53,.12); }
+  @media (hover:hover) { .seg button:hover:not([aria-pressed="true"]), .btn:hover:not([aria-pressed="true"]) { background:rgba(107,74,53,.12); } }
+  /* every button answers the press at once, and the keyboard always shows where it is */
+  .seg button, .btn, #mbar button, .fn-o { transition:transform .1s ease-out, background-color .15s ease; }
+  .seg button:active, .btn:active, #mbar button:active, .fn-o:active, #tour button:active { transform:scale(.97); }
+  :focus-visible { outline:2px solid var(--accent); outline-offset:2px; } #tour :focus-visible, #sheet :focus-visible { outline-color:#f6f1e9; } canvas#view:focus-visible { outline:none; }
+  /* panels arrive with a short rise and fade; closing is quicker than opening, or instant */
+  #side > div, #boq { transition:opacity .25s var(--ease), transform .25s var(--ease); }
+  #boq { transition:opacity .25s var(--ease), transform .25s var(--ease), display .15s allow-discrete; }
+  #boq[hidden] { opacity:0; transition-duration:.15s; }
+  @starting-style { #side > div, #boq, #fsNote, #oops { opacity:0; } }
+  @media (prefers-reduced-motion:no-preference) { @starting-style { #side > div, #boq { transform:translateY(8px) scale(.98); } } #boq[hidden] { transform:translateY(4px); } }
+  #fsNote, #oops { transition:opacity .25s var(--ease); }
+  .grab { display:none; }
   select.btn { padding-right:8px; max-width:150px; }
   #day { align-items:center; gap:6px; padding-right:10px; }
   #day #play { width:34px; padding:7px 0; text-align:center; }
@@ -47,6 +59,7 @@
   #mini .cap { font-size:11px; color:var(--muted); text-align:center; padding-top:4px; }
   #help { position:fixed; left:50%; bottom:calc(16px + env(safe-area-inset-bottom)); transform:translateX(-50%); padding:8px 14px; font-size:12.5px; color:var(--muted);
     max-width:calc(100vw - 440px); text-align:center; transition:opacity .6s; }
+  #help.alert { display:block !important; opacity:1 !important; color:var(--ink); max-width:calc(100vw - 32px); z-index:9; bottom:auto; top:calc(16px + env(safe-area-inset-top)); }
   #stick { position:fixed; left:calc(22px + var(--sleft)); bottom:calc(96px + env(safe-area-inset-bottom)); width:116px; height:116px; border-radius:50%; background:rgba(250,247,242,.35);
     border:1px solid rgba(255,255,255,.6); display:none; touch-action:none; }
   #stick i { position:absolute; left:50%; top:50%; width:48px; height:48px; margin:-24px; border-radius:50%; background:rgba(250,247,242,.9); box-shadow:0 2px 8px rgba(0,0,0,.25); }
@@ -112,7 +125,7 @@
   .fn-g { margin-bottom:10px; } .fn-gh { display:flex; justify-content:space-between; align-items:baseline; margin-bottom:3px; } .fn-gh span { color:var(--muted); font-size:11px; }
   .fn-view { border:0; background:none; color:var(--accent); font:600 11.5px inherit; cursor:pointer; padding:2px 4px; }
   .fn-o { display:flex; justify-content:space-between; align-items:center; gap:8px; width:100%; text-align:left; border:1px solid var(--line); background:rgba(255,255,255,.5); border-radius:8px; padding:6px 9px; margin-top:4px; font:inherit; color:inherit; cursor:pointer; }
-  .fn-o:hover { background:rgba(107,74,53,.07); } .fn-o[aria-pressed="true"] { border-color:var(--accent); box-shadow:inset 0 0 0 1px var(--accent); background:rgba(107,74,53,.10); font-weight:600; }
+  @media (hover:hover) { .fn-o:hover { background:rgba(107,74,53,.07); } } .fn-o[aria-pressed="true"] { border-color:var(--accent); box-shadow:inset 0 0 0 1px var(--accent); background:rgba(107,74,53,.10); font-weight:600; }
   .fn-o small { color:var(--muted); font-weight:400; margin-left:4px; } .fn-o i { font-style:normal; font-variant-numeric:tabular-nums; white-space:nowrap; font-size:12px; color:var(--muted); }
   .fn-note { color:var(--muted); font-size:11px; line-height:1.4; margin:6px 0 2px; } .fn-foot { display:flex; gap:8px; padding-top:8px; } .fn-foot .btn { flex:1; font-size:12.5px; } .fn-foot .btn[disabled] { opacity:.45; cursor:default; }
   .bq-d em.bO { background:#6b4a35; margin:0 0 0 6px; font-weight:600; }
@@ -168,7 +181,8 @@
     #bar { top:auto; bottom:calc(16px + env(safe-area-inset-bottom)); right:calc(8px + var(--sright)); left:calc(8px + var(--sleft)); justify-content:center; max-width:none; }
     #mini { top:calc(60px + env(safe-area-inset-top)); bottom:auto; right:calc(8px + var(--sright)); } #mini canvas { width:92px !important; height:181px !important; }
     #room { bottom:auto; top:calc(60px + env(safe-area-inset-top)); left:calc(8px + var(--sleft)); min-width:0; padding:7px 10px; }
-    #help { display:none; } #stick { bottom:calc(218px + env(safe-area-inset-bottom)); }       /* clear of the toolbar, which is four rows on a phone */
+    #help { display:none; } #help.say { display:block; left:calc(8px + var(--sleft)); transform:none; bottom:auto; top:calc(64px + env(safe-area-inset-top)); max-width:calc(100vw - 124px); text-align:left; color:var(--ink); z-index:6; pointer-events:none; }
+    #stick { bottom:calc(218px + env(safe-area-inset-bottom)); }       /* clear of the toolbar, which is four rows on a phone */
     #title b { font-size:12.5px; white-space:nowrap; } #room { max-width:calc(100vw - 130px); } #room span { display:block; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
     .seg button, .btn { padding:7px 8px; font-size:12.5px; }
   }
@@ -186,10 +200,23 @@
     #mbar { display:flex; position:fixed; left:calc(8px + var(--sleft)); right:calc(8px + var(--sright)); bottom:calc(8px + env(safe-area-inset-bottom)); padding:4px; gap:2px; z-index:5; }
     #mbar button { flex:1 1 0; min-height:44px; appearance:none; border:0; background:transparent; color:var(--ink); font:inherit; font-size:13px; border-radius:9px; padding:0 4px; white-space:nowrap; font-variant-numeric:tabular-nums; }
     #mbar button[aria-pressed="true"] { background:var(--accent); color:#fff; }
-    #bar { display:none; top:auto; bottom:calc(66px + env(safe-area-inset-bottom)); left:calc(8px + var(--sleft)); right:calc(8px + var(--sright)); max-width:none; max-height:62vh; overflow-y:auto; touch-action:pan-y; z-index:5;
+    #bar { display:none; opacity:0; transform:translateY(12px); transition:opacity .15s var(--ease), transform .15s var(--ease), display .15s allow-discrete;
+      top:auto; bottom:calc(66px + env(safe-area-inset-bottom)); left:calc(8px + var(--sleft)); right:calc(8px + var(--sright)); max-width:none; max-height:70vh; overflow-y:auto; touch-action:pan-y; z-index:5;
       flex-direction:column; flex-wrap:nowrap; align-items:stretch; justify-content:flex-start; gap:2px; padding:8px;
       background:var(--paper); border:1px solid var(--line); border-radius:14px; backdrop-filter:blur(10px); -webkit-backdrop-filter:blur(10px); box-shadow:0 6px 24px rgba(40,30,20,.2); }
-    body.menu-open #bar { display:flex; }
+    body.menu-open #bar { display:flex; opacity:1; transform:none; transition-duration:.25s; }
+    @starting-style { body.menu-open #bar { opacity:0; transform:translateY(12px); } }
+    /* the handle: drag it down to close a sheet */
+    .grab { display:block; position:absolute; top:0; left:50%; width:120px; height:24px; margin-left:-60px; touch-action:none; z-index:2; cursor:grab; pointer-events:auto; }
+    .grab::after { content:""; position:absolute; left:42px; right:42px; top:5px; height:4px; border-radius:2px; background:rgba(60,45,35,.26); }
+    #bar > .grab { position:relative; left:auto; margin:-6px auto -4px; flex:0 0 20px; }
+    #side:not(:has(> div:not([hidden]))) > .grab { display:none; }
+    /* the menu: named groups, and the tools as an even grid */
+    #bar .panel[data-cap]::before { content:attr(data-cap); order:-2; flex:1 1 100%; grid-column:1/-1; font-size:11px; letter-spacing:.08em; text-transform:uppercase; color:var(--muted); padding:6px 8px 0; }
+    #bar #tools { display:grid; grid-template-columns:repeat(3,1fr); gap:6px; padding:3px; }
+    #bar #amb { display:grid; grid-template-columns:repeat(4,1fr); gap:2px; } #bar #amb .btn { padding:10px 2px; font-size:13px; text-align:center; } #bar #amb:has(#fsBtn[hidden]) { grid-template-columns:repeat(3,1fr); }
+    #bar #tools .btn { padding:10px 4px; text-align:center; } #bar #tools .btn:not([aria-pressed="true"]) { background:rgba(107,74,53,.08); }
+    #bar #tools select.btn { grid-column:1/-1; text-align:left; padding-left:12px; }
     #bar .panel { background:transparent; border:0; box-shadow:none; backdrop-filter:none; -webkit-backdrop-filter:none; flex-wrap:wrap; }
     #bar .seg button, #bar .btn { min-height:44px; padding:10px 13px; font-size:14px; }
     #bar #day { flex-wrap:wrap; padding-right:3px; } #bar #time { flex:1 1 100%; width:auto; order:-1; height:34px; } #bar #clock { flex:1; font-size:14px; }
@@ -220,12 +247,13 @@
   #tour .t-title { margin:0 0 14px; font:400 clamp(30px,4.2vw,50px)/1.05 "Cormorant Garamond","Hoefler Text","Baskerville","Iowan Old Style",Georgia,serif; letter-spacing:.01em; }
   #tour .t-text { margin:0; font:400 clamp(15.5px,1.35vw,18.5px)/1.6 "Iowan Old Style","Palatino","Hoefler Text",Georgia,serif; color:#f1eadf; text-wrap:pretty; text-shadow:0 1px 14px rgba(0,0,0,.45); user-select:text; -webkit-user-select:text; }
   #tour .t-kick, #tour .t-title, #tour .t-text { opacity:0; transform:translateY(10px); }
-  #tour.in .t-kick, #tour.in .t-title, #tour.in .t-text { opacity:1; transform:none; transition:opacity 1.1s ease, transform 1.1s cubic-bezier(.2,.7,.2,1); }
-  #tour.in .t-title { transition-delay:.35s; } #tour.in .t-text { transition-delay:.8s; }
+  #tour.in .t-kick, #tour.in .t-title, #tour.in .t-text { opacity:1; transform:none; transition:opacity .8s ease, transform .8s var(--ease); }
+  #tour.in .t-title { transition-delay:.15s; } #tour.in .t-text { transition-delay:.35s; }
   #tour .t-ctl { position:absolute; right:calc(clamp(20px,5vw,72px) + var(--sright)); bottom:calc(clamp(40px,8vh,84px) + env(safe-area-inset-bottom)); display:flex; gap:6px; align-items:center; pointer-events:auto; }
   #tour button { appearance:none; cursor:pointer; color:#f6f1e9; background:rgba(34,27,22,.5); border:1px solid rgba(246,241,233,.5); backdrop-filter:blur(8px); -webkit-backdrop-filter:blur(8px); text-shadow:0 1px 2px rgba(0,0,0,.4); border-radius:999px; height:40px; min-width:40px; padding:0 12px;
-    font:400 15px/1 ui-sans-serif,-apple-system,"Segoe UI",sans-serif; backdrop-filter:blur(8px); -webkit-backdrop-filter:blur(8px); transition:background .2s; }
-  #tour button:hover { background:rgba(34,27,22,.72); }
+    font:400 15px/1 ui-sans-serif,-apple-system,"Segoe UI",sans-serif; backdrop-filter:blur(8px); -webkit-backdrop-filter:blur(8px); transition:background-color .2s, transform .1s ease-out, color .2s, border-color .2s; }
+  @media (hover:hover) { #tour button:hover { background:rgba(34,27,22,.72); } }
+  #tour .t-snd[aria-pressed="false"], #tour .t-txt[aria-pressed="false"] { color:rgba(246,241,233,.62); border-color:rgba(246,241,233,.24); }
   #tour .t-x, #tour .t-snd, #tour .t-txt, #tour .t-end button { white-space:nowrap; font-size:12px; letter-spacing:.14em; text-transform:uppercase; padding:0 18px; }
   /* text off: the narration carries the tour, the picture is left clear (the darkening behind the text goes too) */
   #tour.no-text .t-kick, #tour.no-text .t-title, #tour.no-text .t-text { display:none; } #tour.no-text::before { height:22%; opacity:.6; }
@@ -238,7 +266,7 @@
   #tour .t-prog i b { display:block; width:100%; height:2px; background:#f6f1e9; transform:scaleX(0); transform-origin:left; }
   #tour .t-prog i { background:linear-gradient(rgba(246,241,233,.28),rgba(246,241,233,.28)) center/100% 2px no-repeat; }
   @media (max-width:760px), (pointer:coarse) and (max-height:560px), (pointer:coarse) and (max-width:1180px) { #tour .t-x, #tour .t-snd, #tour .t-txt { padding:0 11px; font-size:10.5px; letter-spacing:.1em; } #tour .t-ctl { top:calc(14px + env(safe-area-inset-top)); bottom:auto; right:calc(14px + var(--sright)); } #tour .t-card { bottom:calc(46px + env(safe-area-inset-bottom)); } #tour::before { height:75%; } }
-  @media (prefers-reduced-motion:reduce) { #tour.in .t-kick, #tour.in .t-title, #tour.in .t-text { transition:none; } }
+  @media (prefers-reduced-motion:reduce) { #tour.in .t-kick, #tour.in .t-title, #tour.in .t-text { transition:opacity .3s ease; transform:none; } #tour .t-kick, #tour .t-title, #tour .t-text { transform:none; } }
 
   /* wide, short touch screens (iPhone Duo outer display, a phone held sideways) and mid-width ones (the Duo inner display, small tablets): the menu and the panels become a column on the right
      so the house stays visible beside them, instead of a sheet that would cover most of a short screen */
@@ -247,7 +275,8 @@
     #bar, #side, #boq { left:auto; right:calc(8px + var(--sright)); width:min(360px, 60vw); top:calc(8px + env(safe-area-inset-top)); bottom:calc(66px + env(safe-area-inset-bottom)); height:auto; max-height:none; }
     #bar { top:auto; max-height:calc(100vh - 82px - env(safe-area-inset-top) - env(safe-area-inset-bottom)); }
     #mini { right:auto; left:calc(8px + var(--sleft)); top:calc(52px + env(safe-area-inset-top)); } #mini canvas { width:66px !important; height:130px !important; }
-    #stick { bottom:calc(20px + env(safe-area-inset-bottom)); }
+    #stick { bottom:calc(20px + env(safe-area-inset-bottom)); } .grab, #bar > .grab { display:none; }
+    #help.say { left:calc(96px + var(--sleft)); top:calc(56px + env(safe-area-inset-top)); max-width:calc(100vw - min(360px, 60vw) - 116px - var(--sleft) - var(--sright)); }
     #room { max-width:calc(100vw - min(360px, 60vw) - 32px - var(--sleft) - var(--sright)); }
     body.menu-open #stick, body.boq-open #stick, body:has(#side > div:not([hidden])) #stick { display:block !important; }   /* the column is on the other side: keep walking */
     .dw-body { flex-direction:row; } .dw-side { width:200px; max-height:none; border-top:0; border-right:1px solid var(--grid); }
@@ -258,6 +287,11 @@
     #side { max-height:calc(100vh - 142px - env(safe-area-inset-top) - env(safe-area-inset-bottom)); } #boq { height:calc(100vh - 142px - env(safe-area-inset-top) - env(safe-area-inset-bottom)); }
     #bar { max-height:calc(100vh - 82px - env(safe-area-inset-top) - env(safe-area-inset-bottom)); }
     #mini canvas { width:66px !important; height:130px !important; } body.boq-open #mini, body:has(#side > div:not([hidden])) #mini { display:none; }
+  }
+  /* short touch screens: the menu has to fit the height, so no captions, slightly lower buttons, and the tools four across */
+  @media (pointer:coarse) and (max-height:560px) {
+    #bar .panel[data-cap]::before { display:none; } #bar .seg button, #bar .btn { min-height:40px; }
+    #bar #tools { grid-template-columns:repeat(4,1fr); gap:4px; } #bar #tools select.btn { grid-column:span 3; } #bar #tools .btn { font-size:13px; padding:8px 2px; }
   }
   /* a touch screen wide enough for the full layout (iPhone Duo inner display, tablets): finger-sized targets */
   @media (pointer:coarse) and (min-width:1181px) and (min-height:561px) {
@@ -271,7 +305,7 @@
     #boq { width:min(430px, calc(env(viewport-segment-width 1 0, 100vw) - 32px)); }
   }
 </style>
-  <script type="module" crossorigin src="./assets/index-Cg-Fg3Wg.js"></script>
+  <script type="module" crossorigin src="./assets/index-BkO1ohwA.js"></script>
 </head>
 <body>
 <canvas id="view" tabindex="0"></canvas>
@@ -279,11 +313,11 @@
 <div id="bar">
   <div class="panel seg" id="tourSeg"><button class="btn" id="tourBtn" title="A narrated walk through the house, about four and a half minutes">▶ Guided tour</button></div>
   <div class="panel seg" id="mode"><button data-v="walk" aria-pressed="true">Walk</button><button data-v="doll">Dollhouse</button></div>
-  <div class="panel seg" id="level" style="display:none"><button data-v="2" aria-pressed="true">Whole house</button><button data-v="1">First floor</button><button data-v="0">Ground floor</button></div>
-  <div class="panel seg" id="day"><button id="play" aria-pressed="false" title="Play a full day in 60 seconds (Space)">▶</button><input type="range" id="time" min="0" max="1439" step="1" value="750" aria-label="Time of day"><span id="clock">12:30</span><button class="btn" id="nowBtn" aria-pressed="false" title="Follow the time of day where you are">Now</button><button class="btn" id="sunBtn" aria-pressed="false" title="Season and which way the villa faces">Sun</button></div>
-  <div class="panel seg"><button class="btn" id="lightBtn" aria-pressed="false" title="Switch the lights of the room you are in. You can also click a light fitting.">Lights</button><button class="btn" id="autoBtn" aria-pressed="true" title="Lights follow the daily schedule">Auto</button><button class="btn" id="musicBtn" aria-pressed="true" title="Soft background music">♪ Music on</button><button class="btn" id="fsBtn" aria-pressed="false" title="Fill the whole screen, without the browser's bars" hidden>Full screen</button></div>
-  <div class="panel seg"><select class="btn" id="goto" aria-label="Go to room"><option value="">Go to…</option></select><button class="btn" id="measure" aria-pressed="false">Measure</button><button class="btn" id="photo" aria-pressed="false" title="Photo-quality 360° view of this room">Photo</button><button class="btn" id="boqBtn" aria-pressed="false" title="Bill of quantities and cost">BoQ</button><button class="btn" id="fitBtn" aria-pressed="false" title="Check whether your own furniture fits">Fit</button><button class="btn" id="finBtn" aria-pressed="false" title="Try other finishes and see the cost move">Finishes</button><button class="btn" id="svcBtn" aria-pressed="false" title="Indicative electrical, water, drainage and air-conditioning routes">Services</button><button class="btn" id="drawBtn" aria-pressed="false" title="2D plans of each floor with layers you can switch on and off">Drawings</button><button class="btn" id="sectBtn" aria-pressed="false" title="Cut the house open: long section, cross section or plan">Section</button><button class="btn" id="shareBtn" aria-pressed="false" title="A link to the house as you have it now: finishes, furniture and where you stand">Share</button></div>
-  <div class="panel seg" id="cleanSeg"><button class="btn" id="cleanTop" title="Hide all controls for a clear view (H)">Hide controls</button></div>
+  <div class="panel seg" id="level" data-cap="Floors" style="display:none"><button data-v="2" aria-pressed="true">Whole house</button><button data-v="1">First floor</button><button data-v="0">Ground floor</button></div>
+  <div class="panel seg" id="day" data-cap="Time of day"><button id="play" aria-pressed="false" title="Play a full day in 60 seconds (Space)">▶</button><input type="range" id="time" min="0" max="1439" step="1" value="750" aria-label="Time of day"><span id="clock">12:30</span><button class="btn" id="nowBtn" aria-pressed="false" title="Follow the time of day where you are">Now</button><button class="btn" id="sunBtn" aria-pressed="false" title="Season and which way the villa faces">Sun</button></div>
+  <div class="panel seg" id="amb" data-cap="Lights and sound"><button class="btn" id="lightBtn" aria-pressed="false" title="Switch the lights of the room you are in. You can also click a light fitting.">Lights</button><button class="btn" id="autoBtn" aria-pressed="true" title="Lights come on and go off by themselves through the day">Auto lights</button><button class="btn" id="musicBtn" aria-pressed="true" title="Soft background music">♪ Music on</button><button class="btn" id="fsBtn" aria-pressed="false" title="Fill the whole screen, without the browser's bars" hidden>Full screen</button></div>
+  <div class="panel seg" id="tools" data-cap="Rooms and tools"><select class="btn" id="goto" aria-label="Go to room"><option value="">Go to a room…</option></select><button class="btn" id="measure" aria-pressed="false">Measure</button><button class="btn" id="photo" aria-pressed="false" title="Photo-quality 360° view of this room">Photo</button><button class="btn" id="boqBtn" aria-pressed="false" title="What it costs to build: the bill of quantities">Costs</button><button class="btn" id="fitBtn" aria-pressed="false" title="Check whether your own furniture fits">Furniture</button><button class="btn" id="finBtn" aria-pressed="false" title="Try other finishes and see the cost move">Finishes</button><button class="btn" id="svcBtn" aria-pressed="false" title="Indicative electrical, water, drainage and air-conditioning routes">Services</button><button class="btn" id="drawBtn" aria-pressed="false" title="2D plans of each floor with layers you can switch on and off">Drawings</button><button class="btn" id="sectBtn" aria-pressed="false" title="Cut the house open: long section, cross section or plan">Section</button><button class="btn" id="shareBtn" aria-pressed="false" title="A link to the house as you have it now: finishes, furniture and where you stand">Share</button></div>
+  <div class="panel seg" id="cleanSeg"><button class="btn" id="cleanTop" title="Hide all controls (H)">Clear view</button></div>
 </div>
 <div id="mbar" class="panel"><button id="mMenu" aria-pressed="false">☰ Menu</button><button id="mTour">▶ Tour</button><button id="mClock" aria-label="Time of day">12:30</button><button id="mLight" aria-pressed="false">Lights</button><button id="mClean" aria-label="Hide all controls">Clear view</button></div>
 <button id="cleanBtn" aria-label="Show controls">☰</button>
@@ -303,6 +337,6 @@
   <div class="t-prog"></div>
 </div>
 <div id="tourFade"></div>
-<div id="load"><b>Villa B-3BR</b><div class="track"><div class="fill"></div></div><span>Loading the model…</span></div>
+<div id="load"><b>Villa B-3BR</b><div class="track"><div class="fill"></div></div><span>Loading the house…</span></div>
 </body>
 </html>
