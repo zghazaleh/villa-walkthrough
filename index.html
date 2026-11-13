@@ -218,7 +218,10 @@
   #tour button { appearance:none; cursor:pointer; color:#f6f1e9; background:rgba(34,27,22,.5); border:1px solid rgba(246,241,233,.5); backdrop-filter:blur(8px); -webkit-backdrop-filter:blur(8px); text-shadow:0 1px 2px rgba(0,0,0,.4); border-radius:999px; height:40px; min-width:40px; padding:0 12px;
     font:400 15px/1 ui-sans-serif,-apple-system,"Segoe UI",sans-serif; backdrop-filter:blur(8px); -webkit-backdrop-filter:blur(8px); transition:background .2s; }
   #tour button:hover { background:rgba(34,27,22,.72); }
-  #tour .t-x, #tour .t-snd, #tour .t-end button { white-space:nowrap; font-size:12px; letter-spacing:.14em; text-transform:uppercase; padding:0 18px; }
+  #tour .t-x, #tour .t-snd, #tour .t-txt, #tour .t-end button { white-space:nowrap; font-size:12px; letter-spacing:.14em; text-transform:uppercase; padding:0 18px; }
+  /* text off: the narration carries the tour, the picture is left clear (the darkening behind the text goes too) */
+  #tour.no-text .t-kick, #tour.no-text .t-title, #tour.no-text .t-text { display:none; } #tour.no-text::before { height:22%; opacity:.6; }
+  @media (max-width:480px) { body #tour .t-ctl { gap:4px; } body #tour .t-x, body #tour .t-snd, body #tour .t-txt { padding:0 8px; letter-spacing:.04em; } body #tour .t-x span { display:none; } } @media (max-width:360px) { body #tour .t-ctl { flex-wrap:wrap; justify-content:flex-end; left:14px; } }
   #tour .t-end { display:flex; gap:10px; margin-top:22px; pointer-events:auto; }
   #tour .t-end[hidden] { display:none; }
   #tour .t-end .t-explore { background:#f6f1e9; color:#2b2420; border-color:#f6f1e9; }
@@ -226,7 +229,7 @@
   #tour .t-prog i { flex:1; height:14px; display:flex; align-items:center; cursor:pointer; }
   #tour .t-prog i b { display:block; width:100%; height:2px; background:#f6f1e9; transform:scaleX(0); transform-origin:left; }
   #tour .t-prog i { background:linear-gradient(rgba(246,241,233,.28),rgba(246,241,233,.28)) center/100% 2px no-repeat; }
-  @media (max-width:760px), (pointer:coarse) and (max-height:560px), (pointer:coarse) and (max-width:1180px) { #tour .t-x, #tour .t-snd { padding:0 11px; font-size:10.5px; letter-spacing:.1em; } #tour .t-ctl { top:calc(14px + env(safe-area-inset-top)); bottom:auto; right:calc(14px + var(--sright)); } #tour .t-card { bottom:calc(46px + env(safe-area-inset-bottom)); } #tour::before { height:75%; } }
+  @media (max-width:760px), (pointer:coarse) and (max-height:560px), (pointer:coarse) and (max-width:1180px) { #tour .t-x, #tour .t-snd, #tour .t-txt { padding:0 11px; font-size:10.5px; letter-spacing:.1em; } #tour .t-ctl { top:calc(14px + env(safe-area-inset-top)); bottom:auto; right:calc(14px + var(--sright)); } #tour .t-card { bottom:calc(46px + env(safe-area-inset-bottom)); } #tour::before { height:75%; } }
   @media (prefers-reduced-motion:reduce) { #tour.in .t-kick, #tour.in .t-title, #tour.in .t-text { transition:none; } }
 
   /* wide, short touch screens (iPhone Duo outer display, a phone held sideways) and mid-width ones (the Duo inner display, small tablets): the menu and the panels become a column on the right
@@ -260,7 +263,7 @@
     #boq { width:min(430px, calc(env(viewport-segment-width 1 0, 100vw) - 32px)); }
   }
 </style>
-  <script type="module" crossorigin src="./assets/index-AWEHwlhQ.js"></script>
+  <script type="module" crossorigin src="./assets/index-Bu1dczWc.js"></script>
 </head>
 <body>
 <canvas id="view" tabindex="0"></canvas>
@@ -288,7 +291,7 @@
 <div id="tour" hidden>
   <div class="t-card"><div class="t-kick"></div><h2 class="t-title"></h2><p class="t-text"></p>
     <div class="t-end" hidden><button class="t-explore">Explore on your own</button><button class="t-again">Watch again</button></div></div>
-  <div class="t-ctl"><button class="t-prev" aria-label="Previous stop">‹</button><button class="t-play" aria-label="Pause or play">❚❚</button><button class="t-next" aria-label="Next stop">›</button><button class="t-snd" aria-pressed="true">Sound on</button><button class="t-x" aria-label="Leave the tour">Leave tour</button></div>
+  <div class="t-ctl"><button class="t-prev" aria-label="Previous stop">‹</button><button class="t-play" aria-label="Pause or play">❚❚</button><button class="t-next" aria-label="Next stop">›</button><button class="t-snd" aria-pressed="true">Sound on</button><button class="t-txt" aria-pressed="true">Text on</button><button class="t-x" aria-label="Leave the tour">Leave<span> tour</span></button></div>
   <div class="t-prog"></div>
 </div>
 <div id="tourFade"></div>
