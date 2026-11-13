@@ -85,7 +85,7 @@
   #sheet svg .north { fill:var(--ln); } #sheet svg .sb1 { fill:var(--ln); } #sheet svg .sb0 { fill:none; stroke:var(--ln); stroke-width:.02; }
   #sheet svg .run { stroke-linecap:round; opacity:.95; } #sheet svg .run.under { stroke-dasharray:.16 .1; opacity:.75; } #sheet svg .run.duct { stroke-linecap:butt; opacity:.55; }
   #sheet svg .riser { fill:var(--bg); stroke-width:.035; } #sheet svg .eq { opacity:.9; stroke:var(--bg); stroke-width:.015; } #sheet svg .sym { fill:none; stroke-width:.028; }
-  body.sheet-open #bar, body.sheet-open #title, body.sheet-open #mini, body.sheet-open #room, body.sheet-open #help, body.sheet-open #side { display:none; }
+  body.sheet-open #mbar, body.sheet-open #bar, body.sheet-open #title, body.sheet-open #mini, body.sheet-open #room, body.sheet-open #help, body.sheet-open #side { display:none; }
   @media (max-width:760px) { .dw-body { flex-direction:column-reverse; } .dw-side { width:auto; max-height:30vh; border-right:0; border-top:1px solid var(--grid); } }
   @media print { body > *:not(#sheet) { display:none !important; } #sheet { position:static; height:100vh; } .dw-top .seg, .dw-layers { display:none; } .dw-side { border:0; } }
   #side { position:fixed; left:16px; top:calc(112px + env(safe-area-inset-top)); bottom:calc(96px + env(safe-area-inset-bottom)); width:min(310px, calc(100vw - 32px)); display:flex; flex-direction:column; gap:8px; pointer-events:none; z-index:4; }
@@ -161,10 +161,37 @@
     #title b { font-size:12.5px; white-space:nowrap; } #room { max-width:calc(100vw - 130px); } #room span { display:block; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
     .seg button, .btn { padding:7px 8px; font-size:12.5px; }
   }
+  /* clean view: nothing on screen but the house and one faint button to bring the controls back */
+  #mbar { display:none; }
+  #cleanBtn { display:none; position:fixed; right:14px; bottom:calc(14px + env(safe-area-inset-bottom)); width:44px; height:44px; border-radius:50%; z-index:6; cursor:pointer;
+    appearance:none; border:1px solid rgba(255,255,255,.5); background:rgba(40,32,26,.28); color:#fff; font-size:17px; opacity:.55; backdrop-filter:blur(6px); -webkit-backdrop-filter:blur(6px); transition:opacity .2s; }
+  #cleanBtn:hover, #cleanBtn:active { opacity:1; }
+  body.clean #cleanBtn { display:block; }
+  body.clean #bar, body.clean #mbar, body.clean #title, body.clean #room, body.clean #mini, body.clean #help, body.clean #side, body.clean #boq, body.clean #tip, body.clean #tags { display:none !important; }
+  body.clean #stick { opacity:.45; }
+  /* phones: one row of controls, the rest in a sheet */
+  @media (max-width:760px) {
+    #title, #tourSeg, #cleanSeg { display:none; }
+    #mbar { display:flex; position:fixed; left:8px; right:8px; bottom:calc(8px + env(safe-area-inset-bottom)); padding:4px; gap:2px; z-index:5; }
+    #mbar button { flex:1 1 0; min-height:44px; appearance:none; border:0; background:transparent; color:var(--ink); font:inherit; font-size:13px; border-radius:9px; padding:0 4px; white-space:nowrap; font-variant-numeric:tabular-nums; }
+    #mbar button[aria-pressed="true"] { background:var(--accent); color:#fff; }
+    #bar { display:none; top:auto; bottom:calc(66px + env(safe-area-inset-bottom)); left:8px; right:8px; max-width:none; max-height:62vh; overflow-y:auto; touch-action:pan-y; z-index:5;
+      flex-direction:column; flex-wrap:nowrap; align-items:stretch; justify-content:flex-start; gap:2px; padding:8px;
+      background:var(--paper); border:1px solid var(--line); border-radius:14px; backdrop-filter:blur(10px); -webkit-backdrop-filter:blur(10px); box-shadow:0 6px 24px rgba(40,30,20,.2); }
+    body.menu-open #bar { display:flex; }
+    #bar .panel { background:transparent; border:0; box-shadow:none; backdrop-filter:none; -webkit-backdrop-filter:none; flex-wrap:wrap; }
+    #bar .seg button, #bar .btn { min-height:44px; padding:10px 13px; font-size:14px; }
+    #bar #day { flex-wrap:wrap; padding-right:3px; } #bar #time { flex:1 1 100%; width:auto; order:-1; height:34px; } #bar #clock { flex:1; font-size:14px; }
+    #bar select.btn { max-width:none; flex:1 1 100%; }
+    #stick { bottom:calc(76px + env(safe-area-inset-bottom)); }
+    body.menu-open #stick { display:none !important; }
+    #room { top:calc(10px + env(safe-area-inset-top)); } #mini { top:calc(10px + env(safe-area-inset-top)); }
+    #boq, #side { bottom:calc(66px + env(safe-area-inset-bottom)); }
+  }
   /* guided tour */
   #tourFade { position:fixed; inset:0; background:#14110f; opacity:0; pointer-events:none; transition:opacity .6s ease; z-index:6; }
   #tourFade.on { opacity:1; }
-  body.touring #bar, body.touring #title, body.touring #mini, body.touring #help, body.touring #room, body.touring #tags, body.touring #side, body.touring #boq, body.touring #stick, body.touring #tip { display:none !important; }
+  body.touring #mbar, body.touring #cleanBtn, body.touring #bar, body.touring #title, body.touring #mini, body.touring #help, body.touring #room, body.touring #tags, body.touring #side, body.touring #boq, body.touring #stick, body.touring #tip { display:none !important; }
   #tour { position:fixed; inset:0; z-index:7; pointer-events:none; color:#f6f1e9; }
   #tour::before { content:""; position:absolute; left:0; right:0; bottom:0; height:62%; background:linear-gradient(to top, rgba(16,12,9,.78), rgba(16,12,9,.38) 45%, rgba(16,12,9,0)); }
   #tour .t-card { position:absolute; left:clamp(20px,5vw,72px); bottom:calc(clamp(40px,8vh,84px) + env(safe-area-inset-bottom)); width:min(560px, calc(100vw - 40px)); }
@@ -190,19 +217,22 @@
   @media (max-width:760px) { #tour .t-x, #tour .t-snd { padding:0 11px; font-size:10.5px; letter-spacing:.1em; } #tour .t-ctl { top:calc(14px + env(safe-area-inset-top)); bottom:auto; right:14px; } #tour .t-card { bottom:calc(46px + env(safe-area-inset-bottom)); } #tour::before { height:75%; } }
   @media (prefers-reduced-motion:reduce) { #tour.in .t-kick, #tour.in .t-title, #tour.in .t-text { transition:none; } }
 </style>
-  <script type="module" crossorigin src="./assets/index-BbRoEqNA.js"></script>
+  <script type="module" crossorigin src="./assets/index-D6kObdM8.js"></script>
 </head>
 <body>
 <canvas id="view" tabindex="0"></canvas>
 <div id="title" class="panel"><b>Villa Type B · 3 Bedroom</b><span>Interactive model built from the brochure floor plan · 283 m²</span></div>
 <div id="bar">
-  <div class="panel seg"><button class="btn" id="tourBtn" title="A narrated walk through the house, about four minutes">▶ Guided tour</button></div>
+  <div class="panel seg" id="tourSeg"><button class="btn" id="tourBtn" title="A narrated walk through the house, about four minutes">▶ Guided tour</button></div>
   <div class="panel seg" id="mode"><button data-v="walk" aria-pressed="true">Walk</button><button data-v="doll">Dollhouse</button></div>
   <div class="panel seg" id="level" style="display:none"><button data-v="2" aria-pressed="true">Whole house</button><button data-v="1">First floor</button><button data-v="0">Ground floor</button></div>
   <div class="panel seg" id="day"><button id="play" aria-pressed="false" title="Play a full day in 60 seconds (Space)">▶</button><input type="range" id="time" min="0" max="1439" step="1" value="750" aria-label="Time of day"><span id="clock">12:30</span><button class="btn" id="nowBtn" aria-pressed="false" title="Follow the time of day where you are">Now</button><button class="btn" id="sunBtn" aria-pressed="false" title="Season and which way the villa faces">Sun</button></div>
   <div class="panel seg"><button class="btn" id="lightBtn" aria-pressed="false" title="Switch the lights of the room you are in. You can also click a light fitting.">Lights</button><button class="btn" id="autoBtn" aria-pressed="true" title="Lights follow the daily schedule">Auto</button></div>
   <div class="panel seg"><select class="btn" id="goto" aria-label="Go to room"><option value="">Go to…</option></select><button class="btn" id="measure" aria-pressed="false">Measure</button><button class="btn" id="photo" aria-pressed="false" title="Photo-quality 360° view of this room">Photo</button><button class="btn" id="boqBtn" aria-pressed="false" title="Bill of quantities and cost">BoQ</button><button class="btn" id="fitBtn" aria-pressed="false" title="Check whether your own furniture fits">Fit</button><button class="btn" id="finBtn" aria-pressed="false" title="Try other finishes and see the cost move">Finishes</button><button class="btn" id="svcBtn" aria-pressed="false" title="Indicative electrical, water, drainage and air-conditioning routes">Services</button><button class="btn" id="drawBtn" aria-pressed="false" title="2D plans of each floor with layers you can switch on and off">Drawings</button><button class="btn" id="sectBtn" aria-pressed="false" title="Cut the house open: long section, cross section or plan">Section</button></div>
+  <div class="panel seg" id="cleanSeg"><button class="btn" id="cleanTop" title="Hide all controls for a clear view (H)">Hide controls</button></div>
 </div>
+<div id="mbar" class="panel"><button id="mMenu" aria-pressed="false">☰ Menu</button><button id="mTour">▶ Tour</button><button id="mClock" aria-label="Time of day">12:30</button><button id="mLight" aria-pressed="false">Lights</button><button id="mClean" aria-label="Hide all controls">Clear view</button></div>
+<button id="cleanBtn" aria-label="Show controls">☰</button>
 <div id="room" class="panel"><b>—</b><span></span></div>
 <div id="mini" class="panel"><canvas width="148" height="290"></canvas><div class="cap">Ground floor</div></div>
 <div id="help" class="panel">Drag to look · W A S D or arrows to walk · click the floor to go there · doors open as you approach</div>
