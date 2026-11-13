@@ -205,6 +205,8 @@
   #shareP { padding:10px 12px; flex:0 0 auto; } #shareP[hidden] { display:none; } .sh-list { margin:8px 0; padding-left:18px; color:var(--muted); line-height:1.5; }
   #shareName { width:100%; box-sizing:border-box; font:inherit; font-size:16px; padding:9px 10px; border:1px solid var(--line); border-radius:9px; background:#fff; color:var(--ink); margin-bottom:8px; }
   .sh-foot { display:flex; gap:6px; } .sh-foot .btn { flex:1; min-height:40px; } #shareP small { display:block; color:var(--muted); font-size:11.5px; margin-top:8px; }
+  #fsNote { position:fixed; left:50%; transform:translateX(-50%); top:calc(16px + env(safe-area-inset-top)); z-index:9; width:min(340px, calc(100vw - 32px - var(--sleft) - var(--sright))); padding:14px; display:flex; flex-direction:column; gap:8px; font-size:13.5px; line-height:1.45; }
+  #fsNote[hidden] { display:none; } #fsNote b { font:600 15px Georgia,serif; } #fsNote i { font-style:normal; font-weight:600; } #fsNote .btn { align-self:flex-end; min-height:40px; padding:0 18px; background:var(--accent); color:#fff; border-radius:9px; }
   #oops { position:fixed; left:50%; transform:translateX(-50%); top:calc(12px + env(safe-area-inset-top)); z-index:9; display:flex; gap:6px; align-items:center; padding:6px 6px 6px 12px; font-size:12.5px; max-width:calc(100vw - 24px); }
   /* guided tour */
   #tourFade { position:fixed; inset:0; background:#14110f; opacity:0; pointer-events:none; transition:opacity .6s ease; z-index:6; }
@@ -269,7 +271,7 @@
     #boq { width:min(430px, calc(env(viewport-segment-width 1 0, 100vw) - 32px)); }
   }
 </style>
-  <script type="module" crossorigin src="./assets/index-C3jpKInt.js"></script>
+  <script type="module" crossorigin src="./assets/index-C-IwHh-U.js"></script>
 </head>
 <body>
 <canvas id="view" tabindex="0"></canvas>
