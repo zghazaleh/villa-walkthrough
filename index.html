@@ -149,8 +149,13 @@
   .sv-k b { color:var(--ink); font-weight:600; font-variant-numeric:tabular-nums; } .sv-n { color:var(--muted); font-size:11.5px; padding:5px 0 0 20px; margin:0; }
   .sv-x { display:flex; align-items:center; gap:7px; margin-top:8px; padding-top:7px; border-top:1px solid var(--line); cursor:pointer; } .sv-f { color:var(--muted); font-size:11.5px; margin:7px 0 0; } .sv-f a { color:var(--accent); font-weight:600; text-decoration:none; }
   #sect .seg { padding:0; margin:7px 0; flex-wrap:wrap; } #sect .seg button { padding:5px 9px; font-size:12.5px; } #sect input[type=range] { width:100%; accent-color:var(--accent); margin:2px 0; touch-action:auto; }
+  #sect .seg button { flex:1; } #sect .chips { display:flex; gap:6px; flex-wrap:wrap; margin:0 0 6px; } #sect .chips .btn { flex:1; padding:5px 8px; font-size:12.5px; white-space:nowrap; }
+  #sect .sl { display:flex; align-items:center; gap:8px; margin:4px 0 6px; } #sect .sl input[type=range] { flex:1; min-width:0; width:auto; margin:0; } #sect .sl .btn { flex:0 0 36px; padding:5px 0; font-size:16px; line-height:1; }
+  #sect .row .btn { margin-left:6px; }
+  #sect .chips .btn, #sect .sl .btn { border:1px solid var(--line); } body.sect-open #mini { display:none; } body.doll #stick { display:none !important; }      /* the cut is its own map */
+  @media (max-width:760px), (pointer:coarse) and (max-height:560px), (pointer:coarse) and (max-width:1180px) { #sect .seg button, #sect .btn { min-height:40px; } #sect .sl .btn { flex-basis:44px; } #sect .sl input[type=range] { height:40px; } #sect .seg { margin:6px 0; } }
   #sect .row { display:flex; justify-content:space-between; align-items:center; gap:8px; color:var(--muted); } #sect .row b { color:var(--ink); font-variant-numeric:tabular-nums; } #sect .row span { white-space:nowrap; }
-  .tag.lv { background:#2b2420; color:#fff; border-color:#2b2420; pointer-events:none; font-variant-numeric:tabular-nums; }
+  .tag.lv { background:#2b2420; color:#fff; border-color:#2b2420; pointer-events:none; font-variant-numeric:tabular-nums; transform:translate(6px,-50%); white-space:nowrap; }
   #tip { position:fixed; padding:5px 9px; font-size:12px; pointer-events:none; z-index:6; max-width:260px; } #tip[hidden] { display:none; }
   @media (max-width:1180px) { #side { top:calc(128px + env(safe-area-inset-top)); } }
   @media (max-width:760px), (pointer:coarse) and (max-height:560px), (pointer:coarse) and (max-width:1180px) { #side { top:auto; left:calc(8px + var(--sleft)); right:calc(8px + var(--sright)); width:auto; bottom:calc(64px + env(safe-area-inset-bottom)); max-height:46vh; } }
@@ -305,7 +310,7 @@
     #boq { width:min(430px, calc(env(viewport-segment-width 1 0, 100vw) - 32px)); }
   }
 </style>
-  <script type="module" crossorigin src="./assets/index-BkO1ohwA.js"></script>
+  <script type="module" crossorigin src="./assets/index-C9ufzIKm.js"></script>
 </head>
 <body>
 <canvas id="view" tabindex="0"></canvas>
