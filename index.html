@@ -179,7 +179,8 @@
   #sect .seg button { flex:1; } #sect .chips { display:flex; gap:6px; flex-wrap:wrap; margin:0 0 6px; } #sect .chips .btn { flex:1; padding:5px 8px; font-size:12.5px; white-space:nowrap; }
   #sect .sl { display:flex; align-items:center; gap:8px; margin:4px 0 6px; } #sect .sl input[type=range] { flex:1; min-width:0; width:auto; margin:0; } #sect .sl .btn { flex:0 0 36px; padding:5px 0; font-size:16px; line-height:1; }
   #sect .row .btn { margin-left:6px; }
-  #sect .chips .btn, #sect .sl .btn { border:1px solid var(--line); } body.sect-open #mini { display:none; } body.doll #stick { display:none !important; }      /* the cut is its own map */
+  #sect .chips .btn, #sect .sl .btn { border:1px solid var(--line); } body.sect-open #mini { display:none; } body.doll #stick { display:none !important; }
+  #vig { position:fixed; inset:0; pointer-events:none; opacity:0; transition:opacity .6s ease; background:radial-gradient(ellipse at center, transparent 45%, rgba(0,0,0,.2) 100%); } body.vig:not(.doll):not(.welcome) #vig { opacity:1; }      /* phones have no finishing pass: the lens falloff is drawn over the picture */      /* the cut is its own map */
   @media (max-width:760px), (pointer:coarse) and (max-height:560px), (pointer:coarse) and (max-width:1180px) { #sect .seg button, #sect .btn { min-height:40px; } #sect .sl .btn { flex-basis:44px; } #sect .sl input[type=range] { height:40px; } #sect .seg { margin:6px 0; } }
   #sect .row { display:flex; justify-content:space-between; align-items:center; gap:8px; color:var(--muted); } #sect .row b { color:var(--ink); font-variant-numeric:tabular-nums; } #sect .row span { white-space:nowrap; }
   .tag.lv { background:#2b2420; color:#fff; border-color:#2b2420; pointer-events:none; font-variant-numeric:tabular-nums; transform:translate(6px,-50%); white-space:nowrap; }
@@ -337,10 +338,11 @@
     #boq { width:min(430px, calc(env(viewport-segment-width 1 0, 100vw) - 32px)); }
   }
 </style>
-  <script type="module" crossorigin src="./assets/index-B3mnxR3z.js"></script>
+  <script type="module" crossorigin src="./assets/index-DQ_1NnCk.js"></script>
 </head>
 <body class="welcome">
 <canvas id="view" tabindex="0"></canvas>
+<div id="vig" aria-hidden="true"></div>
 <div id="title" class="panel"><b>Villa Type B · 3 Bedroom</b><span>Interactive model built from the brochure floor plan · 283 m²</span></div>
 <div id="bar">
   <div class="panel seg" id="tourSeg"><button class="btn" id="tourBtn" title="A narrated walk through the house, about four and a half minutes">▶ Guided tour</button></div>
