@@ -20,7 +20,7 @@
   :root { --ink:#2b2420; --paper:rgba(250,247,242,.92); --line:rgba(60,45,35,.16); --accent:#6b4a35; --muted:#7a6c62; --ease:cubic-bezier(.22,1,.36,1); }
   * { box-sizing:border-box; -webkit-tap-highlight-color:transparent; }
   html,body { margin:0; height:100%; overflow:hidden; background:#d9d4cc; color:var(--ink);
-    font:14px/1.35 ui-sans-serif,-apple-system,"Segoe UI",Roboto,Helvetica,Arial,sans-serif; touch-action:none; user-select:none; -webkit-user-select:none; }
+    font:14px/1.35 ui-sans-serif,-apple-system,"Segoe UI",Roboto,Helvetica,Arial,sans-serif; -webkit-font-smoothing:antialiased; text-rendering:optimizeLegibility; touch-action:none; user-select:none; -webkit-user-select:none; }
   canvas#view { position:fixed; inset:0; width:100%; height:100%; display:block; outline:none; }
   .panel { background:var(--paper); border:1px solid var(--line); border-radius:12px; backdrop-filter:blur(10px); -webkit-backdrop-filter:blur(10px);
     box-shadow:0 6px 24px rgba(40,30,20,.14); }
@@ -66,11 +66,38 @@
   .tag { position:fixed; transform:translate(-50%,-50%); padding:3px 8px; border-radius:20px; font-size:11.5px; background:var(--paper); border:1px solid var(--line);
     white-space:nowrap; cursor:pointer; box-shadow:0 2px 8px rgba(40,30,20,.18); }
   .tag.m { background:#2b2420; color:#fff; border-color:#2b2420; pointer-events:none; font-variant-numeric:tabular-nums; }
-  #load { position:fixed; inset:0; background:#ece7df; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:14px; z-index:10; transition:opacity .7s; }
-  #load b { font:600 20px Georgia,serif; letter-spacing:.14em; text-transform:uppercase; }
-  #load .track { width:220px; height:3px; background:rgba(60,45,35,.15); border-radius:3px; overflow:hidden; }
+  /* Welcome: the project's name while the house loads, then two ways in with the house showing softly behind. */
+  #load { position:fixed; inset:0; z-index:10; display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center;
+    padding:calc(24px + env(safe-area-inset-top)) calc(24px + var(--sright)) calc(24px + env(safe-area-inset-bottom)) calc(24px + var(--sleft));
+    background:#ece7df; color:var(--ink); transition:background-color .9s var(--ease), opacity .6s var(--ease), backdrop-filter .9s var(--ease); touch-action:none; }
+  #load.ready { background:rgba(236,231,223,.64); backdrop-filter:blur(18px) saturate(1.1); -webkit-backdrop-filter:blur(18px) saturate(1.1); }
+  #load.gone { opacity:0; pointer-events:none; }
+  body.welcome > :not(#load):not(canvas):not(#oops) { visibility:hidden; }      /* only the house shows behind the welcome, not the controls */
+  #load .w-over { font-size:12px; font-weight:600; letter-spacing:.34em; text-transform:uppercase; color:var(--accent); margin:0 0 clamp(10px, 2.2vh, 18px) .34em; }
+  #load h1 { margin:0; font:500 clamp(38px, min(9vw, 11vh), 76px)/1.02 Georgia,"Times New Roman",serif; letter-spacing:-.015em; }
+  #load .w-meta { margin:clamp(10px, 2vh, 16px) 0 0; font-size:clamp(13.5px, 1.6vw, 15.5px); color:var(--muted); letter-spacing:.04em; }
+  #load .w-rule { width:44px; height:1px; background:var(--accent); opacity:.55; margin:clamp(16px, 3.4vh, 30px) 0; }
+  #load .w-stage { display:grid; justify-items:center; min-height:52px; width:100%; } #load .w-stage > * { grid-area:1 / 1; transition:opacity .5s var(--ease), transform .5s var(--ease); }
+  #load .w-prog { display:flex; flex-direction:column; align-items:center; gap:12px; align-self:center; }
+  #load .track { width:min(220px, 60vw); height:2px; background:rgba(60,45,35,.14); border-radius:2px; overflow:hidden; }
   #load .fill { width:0; height:100%; background:var(--accent); transition:width .25s; }
   #load span { color:var(--muted); font-size:12.5px; }
+  #load .w-go { display:flex; gap:10px; flex-wrap:wrap; justify-content:center; opacity:0; visibility:hidden; transform:translateY(8px); }
+  #load.ready .w-prog { opacity:0; visibility:hidden; } #load.ready .w-go { opacity:1; visibility:visible; transform:none; }
+  #load .w-go button { appearance:none; font:600 15px/1 inherit; font-family:inherit; min-height:48px; padding:0 26px; border-radius:999px; cursor:pointer; border:1px solid var(--accent); background:transparent; color:var(--accent);
+    transition:transform .16s var(--ease), background-color .2s, color .2s; }
+  #load .w-go #wGo { background:var(--accent); color:#fff; box-shadow:0 8px 24px rgba(70,45,30,.22); }
+  #load .w-go button:active { transform:scale(.97); }
+  @media (hover:hover) { #load .w-go #wTour:hover { background:rgba(107,74,53,.08); } #load .w-go #wGo:hover { background:#5a3d2b; } }
+  #load .w-note { position:absolute; left:0; right:0; bottom:calc(18px + env(safe-area-inset-bottom)); margin:0; padding:0 24px; font-size:11.5px; color:var(--muted); }
+  @media (max-height:420px) { #load .w-note { display:none; } }
+  @media (prefers-reduced-motion:no-preference) {
+    #load .w-over, #load h1, #load .w-meta, #load .w-rule { transition:opacity .8s var(--ease), transform .8s var(--ease); }
+    #load h1 { transition-delay:.08s; } #load .w-meta { transition-delay:.16s; } #load .w-rule { transition-delay:.24s; }
+    @starting-style { #load .w-over, #load h1, #load .w-meta, #load .w-rule { opacity:0; transform:translateY(10px); } }
+  }
+  @media (prefers-reduced-motion:reduce) { #load .w-go { transform:none; } }
+  @media (prefers-reduced-transparency:reduce) { #load.ready { background:#ece7df; backdrop-filter:none; -webkit-backdrop-filter:none; } }
   #boq { position:fixed; right:calc(16px + var(--sright)); top:calc(64px + env(safe-area-inset-top)); bottom:calc(16px + env(safe-area-inset-bottom)); width:min(430px, calc(100vw - 32px));
     display:flex; flex-direction:column; overflow:hidden; z-index:5; user-select:text; -webkit-user-select:text; }
   #boq[hidden] { display:none; } .btn[hidden] { display:none; }
@@ -310,9 +337,9 @@
     #boq { width:min(430px, calc(env(viewport-segment-width 1 0, 100vw) - 32px)); }
   }
 </style>
-  <script type="module" crossorigin src="./assets/index-C9ufzIKm.js"></script>
+  <script type="module" crossorigin src="./assets/index-BSgywyLJ.js"></script>
 </head>
-<body>
+<body class="welcome">
 <canvas id="view" tabindex="0"></canvas>
 <div id="title" class="panel"><b>Villa Type B · 3 Bedroom</b><span>Interactive model built from the brochure floor plan · 283 m²</span></div>
 <div id="bar">
@@ -342,6 +369,16 @@
   <div class="t-prog"></div>
 </div>
 <div id="tourFade"></div>
-<div id="load"><b>Villa B-3BR</b><div class="track"><div class="fill"></div></div><span>Loading the house…</span></div>
+<div id="load" role="dialog" aria-label="Welcome">
+  <p class="w-over">The Acres</p>
+  <h1>Villa Type B</h1>
+  <p class="w-meta">3 bedrooms · 283 m² · an interactive walkthrough</p>
+  <div class="w-rule"></div>
+  <div class="w-stage">
+    <div class="w-prog"><div class="track"><div class="fill"></div></div><span>Loading the house…</span></div>
+    <div class="w-go"><button id="wGo">Step inside</button><button id="wTour">Take the guided tour</button></div>
+  </div>
+  <p class="w-note">An unofficial model built from the brochure floor plan. Sizes, finishes and costs are indicative.</p>
+</div>
 </body>
 </html>
