@@ -143,7 +143,13 @@
   #side > div { pointer-events:auto; font-size:12.5px; } #side > div[hidden] { display:none; }
   #svc { overflow-y:auto; touch-action:pan-y; overscroll-behavior:contain; flex:0 1 auto; min-height:0; padding:10px 12px; }
   #sect { padding:10px 12px; flex:0 0 auto; }
-  #sunP { padding:10px 12px; flex:0 0 auto; } #sunP .seg { padding:0; margin:6px 0 8px; flex-wrap:wrap; } #sunP .seg button { padding:5px 8px; font-size:12.5px; } #sunP small { display:block; color:var(--muted); font-size:11.5px; } #sunP .facts { display:grid; grid-template-columns:1fr 1fr 1fr; gap:6px; margin:4px 0 8px; } #sunP .facts div { background:rgba(107,74,53,.08); border-radius:8px; padding:5px 7px; } #sunP .facts b { display:block; font-variant-numeric:tabular-nums; }
+  #sunP { padding:10px 12px; flex:0 1 auto; min-height:0; overflow-y:auto; overscroll-behavior:contain; }
+  #sunP #sunHrs { margin-top:8px; width:100%; } #sunP .sh-wait { margin-top:10px; color:var(--muted); }
+  #sunP table.sh { width:100%; border-collapse:collapse; margin:10px 0 6px; font-variant-numeric:tabular-nums; }
+  #sunP .sh th { text-align:left; font-weight:500; padding:4px 0; } #sunP .sh thead th { font-size:11.5px; color:var(--muted); font-weight:400; } #sunP .sh thead th + th, #sunP .sh td { text-align:right; width:2.9em; padding:4px 3px; }
+  #sunP .sh td.on { font-weight:650; background:rgba(107,74,53,.08); } #sunP .sh tbody tr[data-room] { border-top:1px solid rgba(107,74,53,.12); cursor:pointer; }
+  #sunP .sh tr.sh-g th { padding-top:10px; font-weight:650; } #sunP .sh tr.sh-g small { display:inline; margin-left:6px; font-weight:400; }
+  @media (hover:hover) { #sunP .sh tbody tr[data-room]:hover { background:rgba(107,74,53,.06); } } #sunP .seg { padding:0; margin:6px 0 8px; flex-wrap:wrap; } #sunP .seg button { padding:5px 8px; font-size:12.5px; } #sunP small { display:block; color:var(--muted); font-size:11.5px; } #sunP .facts { display:grid; grid-template-columns:1fr 1fr 1fr; gap:6px; margin:4px 0 8px; } #sunP .facts div { background:rgba(107,74,53,.08); border-radius:8px; padding:5px 7px; } #sunP .facts b { display:block; font-variant-numeric:tabular-nums; }
   #fin { display:flex; flex-direction:column; flex:0 1 auto; min-height:0; padding:10px 12px; } #fin[hidden] { display:none; }
   .fn-tot { background:rgba(107,74,53,.08); border-radius:9px; padding:8px 10px; margin:8px 0; } .fn-tot span, .fn-tot i { display:block; color:var(--muted); font-size:11.5px; font-style:normal; } .fn-tot b { font:600 19px/1.3 Georgia,serif; font-variant-numeric:tabular-nums; }
   #fin i.up { color:#a8662b; } #fin i.dn { color:#3d7a52; }
@@ -340,7 +346,7 @@
     #boq { width:min(430px, calc(env(viewport-segment-width 1 0, 100vw) - 32px)); }
   }
 </style>
-  <script type="module" crossorigin src="./assets/index-D2K4j6Az.js"></script>
+  <script type="module" crossorigin src="./assets/index-BQ_360-g.js"></script>
 </head>
 <body class="welcome">
 <canvas id="view" tabindex="0"></canvas>
