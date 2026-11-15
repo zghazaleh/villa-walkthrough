@@ -180,6 +180,8 @@
   #sect .sl { display:flex; align-items:center; gap:8px; margin:4px 0 6px; } #sect .sl input[type=range] { flex:1; min-width:0; width:auto; margin:0; } #sect .sl .btn { flex:0 0 36px; padding:5px 0; font-size:16px; line-height:1; }
   #sect .row .btn { margin-left:6px; }
   #sect .chips .btn, #sect .sl .btn { border:1px solid var(--line); } body.sect-open #mini { display:none; } body.doll #stick { display:none !important; }
+  #photoBar { position:fixed; left:50%; transform:translateX(-50%); bottom:calc(64px + env(safe-area-inset-bottom)); z-index:6; display:flex; gap:8px; align-items:center; padding:6px 6px 6px 12px; font-size:12.5px; max-width:calc(100vw - 24px); white-space:nowrap; }
+  #photoBar[hidden] { display:none; } #photoBar > span:not(.seg) { color:var(--muted); } body.photo #help, body.photo #stick, body.photo #mini { display:none !important; }
   #vig { position:fixed; inset:0; pointer-events:none; opacity:0; transition:opacity .6s ease; background:radial-gradient(ellipse at center, transparent 45%, rgba(0,0,0,.2) 100%); } body.vig:not(.doll):not(.welcome) #vig { opacity:1; }      /* phones have no finishing pass: the lens falloff is drawn over the picture */      /* the cut is its own map */
   @media (max-width:760px), (pointer:coarse) and (max-height:560px), (pointer:coarse) and (max-width:1180px) { #sect .seg button, #sect .btn { min-height:40px; } #sect .sl .btn { flex-basis:44px; } #sect .sl input[type=range] { height:40px; } #sect .seg { margin:6px 0; } }
   #sect .row { display:flex; justify-content:space-between; align-items:center; gap:8px; color:var(--muted); } #sect .row b { color:var(--ink); font-variant-numeric:tabular-nums; } #sect .row span { white-space:nowrap; }
@@ -231,7 +233,7 @@
   @media (max-width:760px), (pointer:coarse) and (max-height:560px), (pointer:coarse) and (max-width:1180px) {
     #title, #tourSeg, #cleanSeg { display:none; }
     #mbar { display:flex; position:fixed; left:calc(8px + var(--sleft)); right:calc(8px + var(--sright)); bottom:calc(8px + env(safe-area-inset-bottom)); padding:4px; gap:2px; z-index:5; }
-    #mbar button { flex:1 1 0; min-height:44px; appearance:none; border:0; background:transparent; color:var(--ink); font:inherit; font-size:13px; border-radius:9px; padding:0 4px; white-space:nowrap; font-variant-numeric:tabular-nums; }
+    #mbar button { flex:1 1 auto; min-height:44px; appearance:none; border:0; background:transparent; color:var(--ink); font:inherit; font-size:13px; border-radius:9px; padding:0 4px; white-space:nowrap; font-variant-numeric:tabular-nums; }
     #mbar button[aria-pressed="true"] { background:var(--accent); color:#fff; }
     #bar { display:none; opacity:0; transform:translateY(12px); transition:opacity .15s var(--ease), transform .15s var(--ease), display .15s allow-discrete;
       top:auto; bottom:calc(66px + env(safe-area-inset-bottom)); left:calc(8px + var(--sleft)); right:calc(8px + var(--sright)); max-width:none; max-height:70vh; overflow-y:auto; touch-action:pan-y; z-index:5;
@@ -338,7 +340,7 @@
     #boq { width:min(430px, calc(env(viewport-segment-width 1 0, 100vw) - 32px)); }
   }
 </style>
-  <script type="module" crossorigin src="./assets/index-CTHTxubP.js"></script>
+  <script type="module" crossorigin src="./assets/index-CKZlhM1t.js"></script>
 </head>
 <body class="welcome">
 <canvas id="view" tabindex="0"></canvas>
@@ -353,7 +355,8 @@
   <div class="panel seg" id="tools" data-cap="Rooms and tools"><select class="btn" id="goto" aria-label="Go to room"><option value="">Go to a room…</option></select><button class="btn" id="measure" aria-pressed="false">Measure</button><button class="btn" id="photo" aria-pressed="false" title="Photo-quality 360° view of this room">Photo</button><button class="btn" id="boqBtn" aria-pressed="false" title="What it costs to build: the bill of quantities">Costs</button><button class="btn" id="fitBtn" aria-pressed="false" title="Check whether your own furniture fits">Furniture</button><button class="btn" id="finBtn" aria-pressed="false" title="Try other finishes and see the cost move">Finishes</button><button class="btn" id="svcBtn" aria-pressed="false" title="Indicative electrical, water, drainage and air-conditioning routes">Services</button><button class="btn" id="drawBtn" aria-pressed="false" title="2D plans of each floor with layers you can switch on and off">Drawings</button><button class="btn" id="sectBtn" aria-pressed="false" title="Cut the house open: long section, cross section or plan">Section</button><button class="btn" id="shareBtn" aria-pressed="false" title="A link to the house as you have it now: finishes, furniture and where you stand">Share</button></div>
   <div class="panel seg" id="cleanSeg"><button class="btn" id="cleanTop" title="Hide all controls (H)">Clear view</button></div>
 </div>
-<div id="mbar" class="panel"><button id="mMenu" aria-pressed="false">☰ Menu</button><button id="mTour">▶ Tour</button><button id="mClock" aria-label="Time of day">12:30</button><button id="mLight" aria-pressed="false">Lights</button><button id="mClean" aria-label="Hide all controls">Clear view</button></div>
+<div id="photoBar" class="panel" hidden></div>
+<div id="mbar" class="panel"><button id="mMenu" aria-pressed="false" aria-label="Menu">☰</button><button id="mTour">▶ Tour</button><button id="mView" aria-label="Switch between walking inside and the dollhouse">Dollhouse</button><button id="mPlay" aria-pressed="false" aria-label="Play a full day in 60 seconds">☀ ▶</button><button id="mClock" aria-label="Time of day">12:30</button><button id="mLight" aria-pressed="false">Lights</button><button id="mClean" aria-label="Hide all controls">Hide</button></div>
 <button id="cleanBtn" aria-label="Show controls">☰</button>
 <div id="room" class="panel"><b>—</b><span></span></div>
 <div id="mini" class="panel"><canvas width="148" height="290"></canvas><div class="cap">Ground floor</div></div>
