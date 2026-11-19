@@ -144,6 +144,12 @@
   #svc { overflow-y:auto; touch-action:pan-y; overscroll-behavior:contain; flex:0 1 auto; min-height:0; padding:10px 12px; }
   #sect { padding:10px 12px; flex:0 0 auto; }
   #sunP { padding:10px 12px; flex:0 1 auto; min-height:0; overflow-y:auto; overscroll-behavior:contain; }
+  /* status tags (DESIGN.md): a solid tag is something worked out or measured, a dashed one is assumed, as a dashed line is on a drawing */
+  .st { display:inline-block; font-style:normal; font-size:10.5px; font-weight:600; letter-spacing:.06em; text-transform:uppercase; line-height:1; padding:3px 6px; border-radius:999px; vertical-align:1px; white-space:nowrap; }
+  .st.as, .st.tr { border:1px dashed var(--accent); color:var(--accent); } .st.tr { border-style:dotted; } .st.ok { background:rgba(107,74,53,.12); color:var(--accent); } .st.ph { background:rgba(60,45,35,.08); color:var(--muted); }
+  /* label and value rows */
+  .kv { margin:8px 0; } .kv > div { display:flex; justify-content:space-between; gap:12px; padding:5px 0; border-top:1px solid rgba(107,74,53,.12); } .kv > div:first-child { border-top:0; }
+  .kv dt { color:var(--muted); flex:0 0 auto; } .kv dd { margin:0; text-align:right; font-weight:500; font-variant-numeric:tabular-nums; } .kv dd small { display:block; font-weight:400; }
   #sunP #sunHrs { margin-top:8px; width:100%; } #sunP .sh-wait { margin-top:10px; color:var(--muted); }
   #sunP table.sh { width:100%; border-collapse:collapse; margin:10px 0 6px; font-variant-numeric:tabular-nums; }
   #sunP .sh th { text-align:left; font-weight:500; padding:4px 0; } #sunP .sh thead th { font-size:11.5px; color:var(--muted); font-weight:400; } #sunP .sh thead th + th, #sunP .sh td { text-align:right; width:2.9em; padding:4px 3px; }
@@ -275,7 +281,7 @@
   .sh-foot { display:flex; gap:6px; } .sh-foot .btn { flex:1; min-height:40px; } #shareP small { display:block; color:var(--muted); font-size:11.5px; margin-top:8px; }
   #fsNote { position:fixed; left:50%; transform:translateX(-50%); top:calc(16px + env(safe-area-inset-top)); z-index:9; width:min(340px, calc(100vw - 32px - var(--sleft) - var(--sright))); padding:14px; display:flex; flex-direction:column; gap:8px; font-size:13.5px; line-height:1.45; }
   #fsNote[hidden] { display:none; } #fsNote b { font:600 15px Georgia,serif; } #fsNote i { font-style:normal; font-weight:600; } #fsNote .btn { align-self:flex-end; min-height:40px; padding:0 18px; background:var(--accent); color:#fff; border-radius:9px; }
-  #oops { position:fixed; left:50%; transform:translateX(-50%); top:calc(12px + env(safe-area-inset-top)); z-index:9; display:flex; gap:6px; align-items:center; padding:6px 6px 6px 12px; font-size:12.5px; max-width:calc(100vw - 24px); }
+  #oops { position:fixed; left:50%; transform:translateX(-50%); top:calc(12px + env(safe-area-inset-top)); z-index:9; display:flex; gap:6px; align-items:center; padding:6px 6px 6px 12px; font-size:12.5px; width:max-content; max-width:calc(100vw - 24px); }      /* max-content: at left:50% the box would otherwise shrink to half the screen and wrap one word per line */
   /* guided tour */
   #tourFade { position:fixed; inset:0; background:#14110f; opacity:0; pointer-events:none; transition:opacity .6s ease; z-index:6; }
   #tourFade.on { opacity:1; }
@@ -346,7 +352,7 @@
     #boq { width:min(430px, calc(env(viewport-segment-width 1 0, 100vw) - 32px)); }
   }
 </style>
-  <script type="module" crossorigin src="./assets/index-BQ_360-g.js"></script>
+  <script type="module" crossorigin src="./assets/index-Bhh0RV5_.js"></script>
 </head>
 <body class="welcome">
 <canvas id="view" tabindex="0"></canvas>
@@ -389,7 +395,7 @@
     <div class="w-prog"><div class="track"><div class="fill"></div></div><span>Loading the house…</span></div>
     <div class="w-go"><button id="wGo">Step inside</button><button id="wTour">Take the guided tour</button></div>
   </div>
-  <p class="w-note">An unofficial model built from the brochure floor plan. Sizes, finishes and costs are indicative.</p>
+  <p class="w-note">An unofficial model built from the brochure floor plan. Sizes, finishes and costs are indicative, and which way the plot faces is assumed.</p>
 </div>
 </body>
 </html>
