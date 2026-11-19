@@ -1,0 +1,36 @@
+1
+00:00:00,000 --> 00:00:02,880
+ This is where the plan has been leading.
+
+2
+00:00:02,880 --> 00:00:06,240
+ Glass runs from floor to ceiling on the garden side,
+
+3
+00:00:06,240 --> 00:00:09,480
+ with the pool lying just beyond the threshold.
+
+4
+00:00:09,480 --> 00:00:13,320
+ How much sun comes in depends on which way the plot faces,
+
+5
+00:00:13,320 --> 00:00:15,320
+ which we do not yet know.
+
+6
+00:00:15,320 --> 00:00:17,760
+ We have assumed this side looks north,
+
+7
+00:00:17,760 --> 00:00:20,600
+ where the room is lit mostly by the open sky,
+
+8
+00:00:20,600 --> 00:00:22,800
+ rather than by direct sun.
+
+9
+00:00:22,800 --> 00:00:25,600
+ The sun panel lets you try the other directions.
+

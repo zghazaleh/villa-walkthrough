@@ -1,0 +1,9 @@
+This is where the plan has been leading.
+Glass runs from floor to ceiling on the garden side,
+with the pool lying just beyond the threshold.
+How much sun comes in depends on which way the plot faces,
+which we do not yet know.
+We have assumed this side looks north,
+where the room is lit mostly by the open sky,
+rather than by direct sun.
+The sun panel lets you try the other directions.
